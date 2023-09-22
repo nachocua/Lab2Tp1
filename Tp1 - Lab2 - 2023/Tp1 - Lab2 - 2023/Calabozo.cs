@@ -8,5 +8,13 @@ namespace Tp1___Lab2___2023
 {
     internal class Calabozo
     {
+        public string Nombre { get; protected set; }
+        public int Posición { get; protected set; }
+        public string Alineación { get; protected set; }
+        public Calabozo(string nombre, int posición)
+        {
+            Nombre = nombre;
+            Posición = posición;
+        }
     }
 }
