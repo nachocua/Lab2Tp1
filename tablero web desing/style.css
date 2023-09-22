@@ -1,0 +1,22 @@
+body{
+    background-color: gray;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.row, .col{
+    min-height: 40px;
+    min-width: 40px;
+    margin: 1px;
+    padding: 1px;
+    border: black solid 1px;
+}
+
+.col{
+    background-color: antiquewhite;
+}
+
+.col:hover{
+    opacity: 50%;
+}
