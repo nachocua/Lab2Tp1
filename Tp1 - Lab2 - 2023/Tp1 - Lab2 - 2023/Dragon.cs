@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tp1___Lab2___2023
 {
-    internal class Dragon : Pieza
+    public class Dragon : Pieza
     {
         public Dragon(string nombre, int posición, string alineación) : base(nombre, posición, alineación)
         { }
