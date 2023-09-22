@@ -8,9 +8,9 @@ namespace Tp1___Lab2___2023
 {
     public abstract class Pieza
     {
-        public string Nombre { get; private set; }
-        public int Posición { get; private set; }
-        public string Alineación { get; private set; }
+        public string Nombre { get; protected set; }
+        public int Posición { get; protected set; }
+        public string Alineación { get; protected set; }
         public Pieza(string nombre, int posición, string alineación)
         {
             Nombre = nombre;

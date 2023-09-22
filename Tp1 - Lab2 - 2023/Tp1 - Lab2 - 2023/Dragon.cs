@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Tp1___Lab2___2023
 {
-    internal class Dragon
+    internal class Dragon : Pieza
     {
+        public Dragon(string nombre, int posición, string alineación) : base(nombre, posición, alineación)
+        { }
+        public override int Mover(int n)
+        {
+            Posición = n;
+            return Posición;
+        }
     }
 }
