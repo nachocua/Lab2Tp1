@@ -12,8 +12,7 @@ namespace Tp1___Lab2___2023
         { }
         public override int Mover(int n)
         {
-            Posición = n;
-            return Posición;
+            return Posición = n;
         }
     }
 }

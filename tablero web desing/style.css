@@ -11,13 +11,25 @@ body {
    min-width: 40px;
    margin: 1px;
    padding: 1px;
-   border: black solid 1px;
 }
 
 .col {
    background-color: antiquewhite;
+   border: black solid 1px;
 }
 
 .col:hover {
    opacity: 50%;
+}
+
+.col-mod {
+   background-color: gray;
+   min-height: 268px;
+}
+
+.col-final {
+   background-color: lightcoral;
+}
+.col-ini {
+   background-color: lightblue;
 }
