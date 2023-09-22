@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Tp1___Lab2___2023
 {
-    internal class Caballero
+    internal class Caballero : Pieza
     {
+        public Caballero(string nombre, int posición, string alineación) : base(nombre, posición, alineación)
+        { }
+        public override int Mover(int n)
+        {
+            return n;
+        }
     }
 }

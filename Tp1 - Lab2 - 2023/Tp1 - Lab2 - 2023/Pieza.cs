@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Tp1___Lab2___2023
 {
-    internal abstract class Pieza
+    public abstract class Pieza
     {
         public string Nombre { get; private set; }
         public int Posición { get; private set; }
         public string Alineación { get; private set; }
-        Pieza(string nombre, int posición, string alineación)
+        public Pieza(string nombre, int posición, string alineación)
         {
             Nombre = nombre;
             Posición = posición;
