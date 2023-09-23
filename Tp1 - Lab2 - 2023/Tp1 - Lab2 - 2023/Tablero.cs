@@ -11,9 +11,11 @@ namespace Tp1___Lab2___2023
     {
         public int CantidadCalabozos { get; private set; }
         private ArrayList calabozos;
-        public Tablero() 
+        public int TamañoTablero { get; private set; }
+        public Tablero(int tamaño = 50)
         {
             CantidadCalabozos = 0;
+            TamañoTablero = tamaño;
         }
         public void Reset()
         {
