@@ -62,18 +62,17 @@ namespace Tp1___Lab2___2023
             tablero.Reset();
             piezas.Clear();
         }
-        
         //Completar
-        public bool IniciarPartida()
-        { 
+        public void IniciarPartida()
+        {
             return false;
         }
-
         //Completar
         public void JugarRonda()
         {
             if (partidaValida)
             { 
+
             }
         }
         public bool AlguienGano(out string deQueJugador)
