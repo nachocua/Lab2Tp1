@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tp1___Lab2___2023
+namespace Componentes
 {
     public class Jugador
     {

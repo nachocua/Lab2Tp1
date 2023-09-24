@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Componentes;
 
 namespace Tp1___Lab2___2023
 {
@@ -14,10 +15,9 @@ namespace Tp1___Lab2___2023
         public string Dificultad { get; private set; }
         public int NroJuego { get; private set; }
         public int CantidadJugadores { get; private set; }
-        private ArrayList jugadores;
+        private ArrayList jugadores = null;
         private Tablero tablero;
-        private ArrayList piezas;
-
+        private ArrayList piezas = null;
         Juego(int cantidadJugadores)
         {
             CantidadJugadores = cantidadJugadores;
@@ -62,10 +62,14 @@ namespace Tp1___Lab2___2023
             tablero.Reset();
             piezas.Clear();
         }
+        
+        //Completar
         public bool IniciarPartida()
         { 
-            return false; // terminar
+            return false;
         }
+
+        //Completar
         public void JugarRonda()
         {
             if (partidaValida)

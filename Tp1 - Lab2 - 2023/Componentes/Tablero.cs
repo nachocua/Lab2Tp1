@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tp1___Lab2___2023
+namespace Componentes
 {
-    internal class Tablero
+    public class Tablero
     {
         public int CantidadCalabozos { get; private set; }
-        private ArrayList calabozos;
+        private ArrayList calabozos = null;
         public int TamañoTablero { get; private set; }
         public Tablero(int tamaño = 50)
         {
