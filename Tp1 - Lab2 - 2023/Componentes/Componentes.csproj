@@ -43,8 +43,8 @@
   <ItemGroup>
     <Compile Include="Caballero.cs" />
     <Compile Include="Calabozo.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Dragon.cs" />
+    <Compile Include="Juego.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="Pieza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

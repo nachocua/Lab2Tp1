@@ -12,7 +12,7 @@ namespace Componentes
         { }
         public override int Mover(int n)
         {
-            Posición += n;
+            Posición += (n % 6) + 1;
             return Posición;
         }
     }

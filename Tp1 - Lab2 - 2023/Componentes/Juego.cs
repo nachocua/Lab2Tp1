@@ -4,29 +4,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Componentes;
 
-namespace Tp1___Lab2___2023
+namespace Componentes
 {
-    internal class Juego
+    public class Juego
     {
         private bool partidaValida;
-        public string Dificultad { get; private set; }
+        public string Dificultad
+        {
+            get
+            {
+                return dificultad;
+            } 
+            set
+            {
+
+                if(value == "Facil" || value == "Experto" || value == "Intermedio")
+                {
+                    dificultad = value;
+                }
+            } 
+        }
+        private string dificultad;
         public int NroJuego { get; private set; }
-        public int CantidadJugadores { get; private set; }
+        public int CantidadJugadores { get; set; }
         private ArrayList jugadores = null;
         private Tablero tablero;
         private ArrayList piezas = null;
-        Juego(int cantidadJugadores)
+        public Juego(int cantidadJugadores)
         {
             CantidadJugadores = cantidadJugadores;
             tablero = new Tablero();
             Dificultad = "Facil";
+            jugadores = new ArrayList();
+            piezas = new ArrayList();
         }
         public void CargarJugador(string nombre, bool humano=false)
         {
-            jugadores.Add(new Jugador(nombre));
+            Jugador unJugador = new Jugador(nombre);
+            jugadores.Add(unJugador);
             if(jugadores.Count == CantidadJugadores)
             {
                 partidaValida = true;
@@ -65,14 +82,18 @@ namespace Tp1___Lab2___2023
         //Completar
         public void IniciarPartida()
         {
-            return false;
+            
         }
         //Completar
         public void JugarRonda()
         {
+            Random rnd = new Random();
             if (partidaValida)
-            { 
-
+            {
+                foreach(Pieza j in piezas)          
+                {
+                    j.Mover(rnd.Next());
+                }
             }
         }
         public bool AlguienGano(out string deQueJugador)
