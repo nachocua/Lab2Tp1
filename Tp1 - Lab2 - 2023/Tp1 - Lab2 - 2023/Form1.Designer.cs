@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gbVirtuales = new System.Windows.Forms.GroupBox();
             this.nuCantidadJugadores = new System.Windows.Forms.NumericUpDown();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -46,6 +45,7 @@
             this.rbJugar = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gboxTablero = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.IList = new System.Windows.Forms.ImageList(this.components);
             this.gbVirtuales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuCantidadJugadores)).BeginInit();
@@ -53,6 +53,7 @@
             this.gbDificultad.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gboxTablero.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbVirtuales
@@ -234,6 +235,7 @@
             // gboxTablero
             // 
             this.gboxTablero.BackColor = System.Drawing.Color.Gray;
+            this.gboxTablero.Controls.Add(this.pictureBox1);
             this.gboxTablero.Controls.Add(this.webBrowser1);
             this.gboxTablero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gboxTablero.Location = new System.Drawing.Point(381, 12);
@@ -243,11 +245,22 @@
             this.gboxTablero.TabStop = false;
             this.gboxTablero.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.RosyBrown;
+            this.pictureBox1.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(29, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox1.TabIndex = 27;
+            this.pictureBox1.TabStop = false;
+            // 
             // IList
             // 
-            this.IList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("IList.ImageStream")));
+            this.IList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.IList.ImageSize = new System.Drawing.Size(16, 16);
             this.IList.TransparentColor = System.Drawing.Color.Transparent;
-            this.IList.Images.SetKeyName(0, "Caballero Humano.png");
             // 
             // Form1
             // 
@@ -266,7 +279,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "pic";
             this.gbVirtuales.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nuCantidadJugadores)).EndInit();
             this.gbJugador.ResumeLayout(false);
@@ -276,6 +289,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gboxTablero.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -299,6 +313,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox gboxTablero;
         private System.Windows.Forms.ImageList IList;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

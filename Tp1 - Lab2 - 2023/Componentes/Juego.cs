@@ -16,15 +16,15 @@ namespace Componentes
             get
             {
                 return dificultad;
-            } 
+            }
             set
             {
 
-                if(value == "Facil" || value == "Experto" || value == "Intermedio")
+                if (value == "Facil" || value == "Experto" || value == "Intermedio")
                 {
                     dificultad = value;
                 }
-            } 
+            }
         }
         private string dificultad;
         public int NroJuego
@@ -42,11 +42,11 @@ namespace Componentes
             CantidadJugadores = cantidadJugadores;
             Dificultad = "Facil";
         }
-        public void CargarJugador(string nombre, bool humano=false)
+        public void CargarJugador(string nombre, bool humano = false)
         {
             Jugador unJugador = new Jugador(nombre);
             jugadores.Add(unJugador);
-            if(jugadores.Count == CantidadJugadores)
+            if (jugadores.Count == CantidadJugadores)
             {
                 partidaValida = true;
             }
@@ -58,17 +58,17 @@ namespace Componentes
         public void GenerarPiezas()
         {
             Random rnd = new Random();
-            foreach(Jugador auxJug in jugadores) 
+            foreach (Jugador auxJug in jugadores)
             {
                 Caballero unCaballero = new Caballero(auxJug.Nombre, 0, auxJug.Nombre);
                 piezas.Add(unCaballero);
-                if(Dificultad != "Facil")
+                if (Dificultad != "Facil")
                 {
-                    Dragon unDragon = new Dragon(auxJug.Nombre, rnd.Next(0,tablero.TamañoTablero), auxJug.Nombre);
+                    Dragon unDragon = new Dragon(auxJug.Nombre, rnd.Next(0, tablero.TamañoTablero), auxJug.Nombre);
                     piezas.Add(unDragon);
                 }
             }
-            if (Dificultad == "Experto") 
+            if (Dificultad == "Experto")
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -84,7 +84,7 @@ namespace Componentes
         //Completar
         public void IniciarPartida()
         {
-            
+
         }
         //Completar
         public void JugarRonda()
@@ -92,7 +92,7 @@ namespace Componentes
             Random rnd = new Random();
             if (partidaValida)
             {
-                foreach(Pieza j in piezas)          
+                foreach (Pieza j in piezas)
                 {
                     j.Mover(rnd.Next());
                 }
@@ -100,13 +100,13 @@ namespace Componentes
         }
         public bool AlguienGano(out string deQueJugador)
         {
-            bool state =false;
+            bool state = false;
             deQueJugador = null;
-            foreach(Pieza pieza in piezas) 
+            foreach (Pieza pieza in piezas)
             {
-                if(pieza is Caballero)
+                if (pieza is Caballero)
                 {
-                    if(pieza.Posición == tablero.TamañoTablero - 1)
+                    if (pieza.Posición == tablero.TamañoTablero - 1)
                     {
                         state = true;
                         deQueJugador = pieza.Alineación;
@@ -123,7 +123,6 @@ namespace Componentes
         {
             return (Pieza)piezas[indx];
         }
-
         public Jugador GetJugador(string alineacion)
         {
             Jugador unJugador = null;
@@ -135,6 +134,10 @@ namespace Componentes
                 }
             }
             return unJugador;
+        }
+        public int TamañoTablero()
+        {
+            return tablero.TamañoTablero;
         }
     }
 }

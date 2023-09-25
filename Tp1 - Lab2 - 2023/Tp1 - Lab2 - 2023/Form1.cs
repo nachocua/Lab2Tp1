@@ -16,11 +16,27 @@ namespace Tp1___Lab2___2023
     public partial class Form1 : Form
     {
         Juego unJuego;
+        Point[] listaPuntos;
         public Form1()
         {
             InitializeComponent();
             unJuego = new Juego(Convert.ToInt32(nuCantidadJugadores.Value));
             generarJugadores();
+            listaPuntos = new Point[unJuego.TamañoTablero()];
+        }
+        private Point CalcularPosiciónTablero(int indx)
+        {
+            Point unPunto = new Point();
+            int f = indx / 7,
+                c;
+            if(indx == 8)
+            {
+                f--;
+            }
+            c = (indx - f * 7);
+            unPunto.X = c;
+            unPunto.Y = f;
+            return unPunto;
         }
         #region Cambio de Dificultad
             private void rbFacil_CheckedChanged(object sender, EventArgs e)
@@ -85,24 +101,12 @@ namespace Tp1___Lab2___2023
                 lbMarcador.Items.Add("Virtual: " + nombre + ". 0 Puntos.");
             }
         }
-
         private void btnIniciarJuego_Click(object sender, EventArgs e)
         {
             btnIniciarJuego.Enabled = false;
             gboxTablero.Visible = true;
             Width = 915;
             Height = 502;
-            ArrayList imagenes = new ArrayList();
-            PictureBox[] pictureBoxes = new PictureBox[unJuego.CantidadPiezas()];
-            for(int i = 0; i < unJuego.CantidadPiezas(); i++)
-            {
-                Pieza unaPieza = unJuego.getPieza(i);
-                if(unaPieza is Caballero)
-                {
-                    
-                }
-                Image unaImagen = IList.Images[0];
-            }
         }
     }
 }
