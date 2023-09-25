@@ -27,18 +27,20 @@ namespace Componentes
             } 
         }
         private string dificultad;
-        public int NroJuego { get; private set; }
-        public int CantidadJugadores { get; set; }
-        private ArrayList jugadores = null;
+        public int NroJuego
+        { get; private set; }
+        public int CantidadJugadores
+        { get; set; }
+        private ArrayList jugadores;
         private Tablero tablero;
-        private ArrayList piezas = null;
+        private ArrayList piezas;
         public Juego(int cantidadJugadores)
         {
-            CantidadJugadores = cantidadJugadores;
-            tablero = new Tablero();
-            Dificultad = "Facil";
             jugadores = new ArrayList();
             piezas = new ArrayList();
+            tablero = new Tablero();
+            CantidadJugadores = cantidadJugadores;
+            Dificultad = "Facil";
         }
         public void CargarJugador(string nombre, bool humano=false)
         {
@@ -112,6 +114,27 @@ namespace Componentes
                 }
             }
             return state;
+        }
+        public int CantidadPiezas()
+        {
+            return piezas.Count;
+        }
+        public Pieza getPieza(int indx)
+        {
+            return (Pieza)piezas[indx];
+        }
+
+        public Jugador GetJugador(string alineacion)
+        {
+            Jugador unJugador = null;
+            foreach (Jugador aux in jugadores)
+            {
+                if(aux.Nombre == alineacion)
+                {
+                    unJugador=aux;
+                }
+            }
+            return unJugador;
         }
     }
 }

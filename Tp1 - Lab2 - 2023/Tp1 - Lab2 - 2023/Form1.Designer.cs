@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gbVirtuales = new System.Windows.Forms.GroupBox();
             this.nuCantidadJugadores = new System.Windows.Forms.NumericUpDown();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -43,17 +45,20 @@
             this.rbDemo = new System.Windows.Forms.RadioButton();
             this.rbJugar = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gboxTablero = new System.Windows.Forms.GroupBox();
+            this.IList = new System.Windows.Forms.ImageList(this.components);
             this.gbVirtuales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuCantidadJugadores)).BeginInit();
             this.gbJugador.SuspendLayout();
             this.gbDificultad.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.gboxTablero.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbVirtuales
             // 
             this.gbVirtuales.Controls.Add(this.nuCantidadJugadores);
-            this.gbVirtuales.Location = new System.Drawing.Point(12, 335);
+            this.gbVirtuales.Location = new System.Drawing.Point(16, 351);
             this.gbVirtuales.Name = "gbVirtuales";
             this.gbVirtuales.Size = new System.Drawing.Size(130, 76);
             this.gbVirtuales.TabIndex = 21;
@@ -87,10 +92,11 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(382, 13);
+            this.webBrowser1.Location = new System.Drawing.Point(17, 17);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(470, 400);
+            this.webBrowser1.ScrollBarsEnabled = false;
+            this.webBrowser1.Size = new System.Drawing.Size(472, 409);
             this.webBrowser1.TabIndex = 20;
             this.webBrowser1.Url = new System.Uri("http://127.0.0.1:5500/", System.UriKind.Absolute);
             // 
@@ -182,12 +188,13 @@
             // 
             // btnIniciarJuego
             // 
-            this.btnIniciarJuego.Location = new System.Drawing.Point(201, 365);
+            this.btnIniciarJuego.Location = new System.Drawing.Point(201, 379);
             this.btnIniciarJuego.Name = "btnIniciarJuego";
             this.btnIniciarJuego.Size = new System.Drawing.Size(147, 23);
             this.btnIniciarJuego.TabIndex = 15;
             this.btnIniciarJuego.Text = "Iniciar Juego";
             this.btnIniciarJuego.UseVisualStyleBackColor = true;
+            this.btnIniciarJuego.Click += new System.EventHandler(this.btnIniciarJuego_Click);
             // 
             // rbDemo
             // 
@@ -224,19 +231,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo juego";
             // 
+            // gboxTablero
+            // 
+            this.gboxTablero.BackColor = System.Drawing.Color.Gray;
+            this.gboxTablero.Controls.Add(this.webBrowser1);
+            this.gboxTablero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.gboxTablero.Location = new System.Drawing.Point(381, 12);
+            this.gboxTablero.Name = "gboxTablero";
+            this.gboxTablero.Size = new System.Drawing.Size(512, 445);
+            this.gboxTablero.TabIndex = 26;
+            this.gboxTablero.TabStop = false;
+            this.gboxTablero.Visible = false;
+            // 
+            // IList
+            // 
+            this.IList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("IList.ImageStream")));
+            this.IList.TransparentColor = System.Drawing.Color.Transparent;
+            this.IList.Images.SetKeyName(0, "Caballero Humano.png");
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(864, 424);
+            this.ClientSize = new System.Drawing.Size(1087, 800);
+            this.Controls.Add(this.gboxTablero);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbVirtuales);
-            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.gbJugador);
             this.Controls.Add(this.gbDificultad);
             this.Controls.Add(this.lbMarcador);
             this.Controls.Add(this.btnIniciarJuego);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -249,6 +275,7 @@
             this.gbDificultad.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gboxTablero.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -270,6 +297,8 @@
         private System.Windows.Forms.RadioButton rbDemo;
         private System.Windows.Forms.RadioButton rbJugar;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gboxTablero;
+        private System.Windows.Forms.ImageList IList;
     }
 }
 

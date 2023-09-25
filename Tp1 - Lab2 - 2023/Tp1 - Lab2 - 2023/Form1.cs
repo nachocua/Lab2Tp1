@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,30 +15,32 @@ namespace Tp1___Lab2___2023
 {
     public partial class Form1 : Form
     {
-        Juego unJuego = null;
+        Juego unJuego;
         public Form1()
         {
             InitializeComponent();
             unJuego = new Juego(Convert.ToInt32(nuCantidadJugadores.Value));
             generarJugadores();
         }
-        private void rbFacil_CheckedChanged(object sender, EventArgs e)
-        {
-            unJuego.Dificultad = rbFacil.Text;
-            tbNombre.Text = unJuego.Dificultad;
-        }
-        private void rbIntermedio_CheckedChanged(object sender, EventArgs e)
-        {
-            unJuego.Dificultad = rbIntermedio.Text;
-            tbNombre.Text = unJuego.Dificultad;
-        }
-        private void rbExperto_CheckedChanged(object sender, EventArgs e)
-        {
-            unJuego.Dificultad = rbExperto.Text;
-            tbNombre.Text = unJuego.Dificultad;
-        }
+        #region Cambio de Dificultad
+            private void rbFacil_CheckedChanged(object sender, EventArgs e)
+            {
+                unJuego.Dificultad = rbFacil.Text;
+                tbNombre.Text = unJuego.Dificultad;
+            }
+            private void rbIntermedio_CheckedChanged(object sender, EventArgs e)
+            {
+                unJuego.Dificultad = rbIntermedio.Text;
+                tbNombre.Text = unJuego.Dificultad;
+            }
+            private void rbExperto_CheckedChanged(object sender, EventArgs e)
+            {
+                unJuego.Dificultad = rbExperto.Text;
+                tbNombre.Text = unJuego.Dificultad;
+            }
+        #endregion
         #region Trigger GenerarJugadores
-            private void nuCantidadJugadores_ValueChanged(object sender, EventArgs e)
+        private void nuCantidadJugadores_ValueChanged(object sender, EventArgs e)
             {
                 generarJugadores();
 
@@ -64,12 +67,8 @@ namespace Tp1___Lab2___2023
         {
             lbMarcador.Items.Clear();
             unJuego.CantidadJugadores = Convert.ToInt32(nuCantidadJugadores.Value);
-            for(int i=0; i<unJuego.CantidadJugadores-1; i++) 
-            {
-                string nombre = "Virtual " + (i + 1);
-                unJuego.CargarJugador(nombre);
-                lbMarcador.Items.Add("Virtual: " + nombre + ". 0 Puntos.");
-            }
+            string nombre;
+            int virtualACrear = unJuego.CantidadJugadores - 1;
             if (rbJugar.Checked)
             {
                 unJuego.CargarJugador(tbNombre.Text, true);
@@ -77,9 +76,32 @@ namespace Tp1___Lab2___2023
             }
             else
             {
-                string nombre = "Virtual " + (unJuego.CantidadJugadores);
+                virtualACrear++;
+            }
+            for(int i=0; i<virtualACrear; i++) 
+            {
+                nombre = "Virtual " + (i + 1);
                 unJuego.CargarJugador(nombre);
                 lbMarcador.Items.Add("Virtual: " + nombre + ". 0 Puntos.");
+            }
+        }
+
+        private void btnIniciarJuego_Click(object sender, EventArgs e)
+        {
+            btnIniciarJuego.Enabled = false;
+            gboxTablero.Visible = true;
+            Width = 915;
+            Height = 502;
+            ArrayList imagenes = new ArrayList();
+            PictureBox[] pictureBoxes = new PictureBox[unJuego.CantidadPiezas()];
+            for(int i = 0; i < unJuego.CantidadPiezas(); i++)
+            {
+                Pieza unaPieza = unJuego.getPieza(i);
+                if(unaPieza is Caballero)
+                {
+                    
+                }
+                Image unaImagen = IList.Images[0];
             }
         }
     }
