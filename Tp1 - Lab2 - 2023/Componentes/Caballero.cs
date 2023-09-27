@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Componentes
+﻿namespace Componentes
 {
     public class Caballero : Pieza
     {
@@ -13,7 +7,7 @@ namespace Componentes
         public override int Mover(int n)
         {
             Posición += (n % 6) + 1;
-            if(Posición > 49)
+            if (Posición > 49)
             {
                 Posición = 49;
             }

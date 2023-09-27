@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Componentes;
 
 namespace Componentes
 {
@@ -34,7 +29,7 @@ namespace Componentes
         private ArrayList jugadores;
         private Tablero tablero;
         private ArrayList piezas;
-        public Juego(int cantidadJugadores)
+        public Juego(int cantidadJugadores = 2)
         {
             jugadores = new ArrayList();
             piezas = new ArrayList();
@@ -68,18 +63,19 @@ namespace Componentes
                     piezas.Add(unDragon);
                 }
             }
-            if (Dificultad == "Experto")
+            /*if (Dificultad == "Experto")
             {
                 for (int i = 0; i < 3; i++)
                 {
                     tablero.AgregarCalabozo();
                 }
-            }
+            }*/
         }
         public void Reset()
         {
             tablero.Reset();
             piezas.Clear();
+            jugadores.Clear();
         }
         //Completar
         public void IniciarPartida()
@@ -128,9 +124,9 @@ namespace Componentes
             Jugador unJugador = null;
             foreach (Jugador aux in jugadores)
             {
-                if(aux.Nombre == alineacion)
+                if (aux.Nombre == alineacion)
                 {
-                    unJugador=aux;
+                    unJugador = aux;
                 }
             }
             return unJugador;
