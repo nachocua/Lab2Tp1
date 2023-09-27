@@ -64,7 +64,7 @@ namespace Componentes
                 piezas.Add(unCaballero);
                 if (Dificultad != "Facil")
                 {
-                    Dragon unDragon = new Dragon(auxJug.Nombre, rnd.Next(0, tablero.TamañoTablero), auxJug.Nombre);
+                    Dragon unDragon = new Dragon(auxJug.Nombre, rnd.Next(tablero.TamañoTablero), auxJug.Nombre);
                     piezas.Add(unDragon);
                 }
             }

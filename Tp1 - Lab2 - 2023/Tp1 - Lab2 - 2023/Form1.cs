@@ -26,8 +26,8 @@ namespace Tp1___Lab2___2023
             nombres = new ArrayList();
             inicio = false;
             CargarNombres();
-            generarJugadores();
             SetPictureBox();
+            generarJugadores();
             HabilitarPictureBox();
         }
         private void CargarNombres()
@@ -71,15 +71,15 @@ namespace Tp1___Lab2___2023
                     unPictureBox.BringToFront();
                 }
             }
-            private void ConfigPictureBoxStart(PictureBox unPictureBox)
+            private void ConfigPictureBoxStart(PictureBox unPictureBox, int indx)
             {
-                unPictureBox.Location = CalcularPosiciónTablero(unJuego.getPieza(0).Posición);
-                unPictureBox.BackColor = GetBackColor(unJuego.getPieza(0).Posición);
+                unPictureBox.Location = CalcularPosiciónTablero(unJuego.getPieza(indx).Posición);
+                unPictureBox.BackColor = GetBackColor(unJuego.getPieza(indx).Posición);
             }
-            private void ConfigPictureBoxMover(PictureBox unPictureBox, int posicion, int random)
+            private void ConfigPictureBoxMover(PictureBox unPictureBox, int indx, int random)
             {
-                pictureBox0.Location = CalcularPosiciónTablero();
-                unPictureBox.BackColor = GetBackColor(unJuego.getPieza(posicion).Posición);
+                unPictureBox.Location = CalcularPosiciónTablero(unJuego.getPieza(indx).Mover(random));
+                unPictureBox.BackColor = GetBackColor(unJuego.getPieza(indx).Posición);
             }
         #endregion
         #region Operar Pictures Box
@@ -118,35 +118,35 @@ namespace Tp1___Lab2___2023
             {
                 unJuego.Dificultad = rbFacil.Text;
                 tbNombre.Text = unJuego.Dificultad;
+                HabilitarPictureBox();
             }
             private void rbIntermedio_CheckedChanged(object sender, EventArgs e)
             {
                 unJuego.Dificultad = rbIntermedio.Text;
                 tbNombre.Text = unJuego.Dificultad;
+                HabilitarPictureBox();
             }
             private void rbExperto_CheckedChanged(object sender, EventArgs e)
             {
                 unJuego.Dificultad = rbExperto.Text;
                 tbNombre.Text = unJuego.Dificultad;
+                HabilitarPictureBox();
             }
         #endregion
         #region Trigger GenerarJugadores
             private void nuCantidadJugadores_ValueChanged(object sender, EventArgs e)
             {
                 generarJugadores();
-                HabilitarPictureBox();
             }
             private void rbDemo_CheckedChanged(object sender, EventArgs e)
             {
                 generarJugadores();
                 gbJugador.Enabled = false;
-                HabilitarPictureBox();
             }
             private void rbJugar_CheckedChanged(object sender, EventArgs e)
             {
                 generarJugadores();
                 gbJugador.Enabled = true;
-                HabilitarPictureBox();
             }
             private void tbNombre_TextChanged(object sender, EventArgs e)
             {
@@ -178,63 +178,71 @@ namespace Tp1___Lab2___2023
                 unJuego.CargarJugador(nombre);
                 lbMarcador.Items.Add("Virtual: " + nombre + ". 0 Puntos.");
             }
+            HabilitarPictureBox();
         }
         private void HabilitarPictureBox()
         {
-            for (int i = 2; i < pictureBoxes.Length-2; i++)
+            int cantidadJugadores = unJuego.CantidadJugadores;
+            int i;
+            for (i = 0; i < pictureBoxes.Length; i++)
             {
                 pictureBoxes[i].Visible = false;
             }
-            if(rbJugar.Checked) 
+            if (rbJugar.Checked)
             {
+                cantidadJugadores--;
                 pictureBoxes[0].Visible = true;
-                pictureBoxes[1].Visible = true;
-                pictureBoxes[8].Visible = false;
-                pictureBoxes[9].Visible = false;
+                if (unJuego.Dificultad!="Facil")
+                {
+                    pictureBoxes[1].Visible = true;
+                }
             }
-            else
+            if(unJuego.Dificultad!="Facil")
             {
-                pictureBoxes[0].Visible = false;
-                pictureBoxes[1].Visible = false;
-                pictureBoxes[8].Visible = true;
-                pictureBoxes[9].Visible = true;
+                for (i = 0; i < cantidadJugadores; i++)
+                {
+                    pictureBoxes[3+2*i].Visible = true;
+                }
             }
-            for (int i = 0; i < unJuego.CantidadJugadores - 1; i++)
+            for (i = 0; i < cantidadJugadores; i++)
             {
                 pictureBoxes[2 + 2 * i].Visible = true;
-                pictureBoxes[3 + 2 * i].Visible = true;
             }
         }
         private void btnIniciarJuego_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
+            int cont = 0;
             if (!inicio)
             {
-                //HabilitarPictureBox();
-                Width = 915;
-                Height = 502;
+                //Width = 915;
+                //Height = 502;
                 inicio = true;
                 unJuego.GenerarPiezas();
                 foreach (PictureBox unPictureBox in pictureBoxes)
                 {
                     if (unPictureBox.Visible)
                     {
-                        ConfigPictureBoxStart(unPictureBox);
+                        ConfigPictureBoxStart(unPictureBox, cont);
+                        cont++;
                     }
                 }
                 //btnIniciarJuego.Enabled = false;
             }
             else
             {
+                /*
                 for (int i = 0; i < unJuego.CantidadPiezas(); i++)
                 {
                     unJuego.getPieza(i).Mover(rnd.Next());
                 }
+                */
                 foreach (PictureBox unPictureBox in pictureBoxes)
                 {
                     if(unPictureBox.Visible)
                     {
-                        ConfigPictureBoxMover(unPictureBox, pictureBoxes);
+                        ConfigPictureBoxMover(unPictureBox, cont, rnd.Next());
+                        cont++;
                     }
                 }
             }
