@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gbVirtuales = new System.Windows.Forms.GroupBox();
             this.nuCantidadJugadores = new System.Windows.Forms.NumericUpDown();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -75,9 +76,11 @@
             // gbVirtuales
             // 
             this.gbVirtuales.Controls.Add(this.nuCantidadJugadores);
-            this.gbVirtuales.Location = new System.Drawing.Point(16, 351);
+            this.gbVirtuales.Location = new System.Drawing.Point(21, 432);
+            this.gbVirtuales.Margin = new System.Windows.Forms.Padding(4);
             this.gbVirtuales.Name = "gbVirtuales";
-            this.gbVirtuales.Size = new System.Drawing.Size(130, 76);
+            this.gbVirtuales.Padding = new System.Windows.Forms.Padding(4);
+            this.gbVirtuales.Size = new System.Drawing.Size(173, 94);
             this.gbVirtuales.TabIndex = 21;
             this.gbVirtuales.TabStop = false;
             this.gbVirtuales.Text = "Jugadores Virtuales";
@@ -85,7 +88,8 @@
             // nuCantidadJugadores
             // 
             this.nuCantidadJugadores.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nuCantidadJugadores.Location = new System.Drawing.Point(7, 30);
+            this.nuCantidadJugadores.Location = new System.Drawing.Point(9, 37);
+            this.nuCantidadJugadores.Margin = new System.Windows.Forms.Padding(4);
             this.nuCantidadJugadores.Maximum = new decimal(new int[] {
             4,
             0,
@@ -97,7 +101,7 @@
             0,
             0});
             this.nuCantidadJugadores.Name = "nuCantidadJugadores";
-            this.nuCantidadJugadores.Size = new System.Drawing.Size(113, 23);
+            this.nuCantidadJugadores.Size = new System.Drawing.Size(151, 27);
             this.nuCantidadJugadores.TabIndex = 12;
             this.nuCantidadJugadores.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nuCantidadJugadores.Value = new decimal(new int[] {
@@ -109,11 +113,12 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(380, 19);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Location = new System.Drawing.Point(507, 23);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(472, 409);
+            this.webBrowser1.Size = new System.Drawing.Size(629, 503);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("http://127.0.0.1:5500/", System.UriKind.Absolute);
             // 
@@ -122,27 +127,31 @@
             this.gbJugador.Controls.Add(this.tbNombre);
             this.gbJugador.Controls.Add(this.label1);
             this.gbJugador.Enabled = false;
-            this.gbJugador.Location = new System.Drawing.Point(93, 13);
+            this.gbJugador.Location = new System.Drawing.Point(124, 16);
+            this.gbJugador.Margin = new System.Windows.Forms.Padding(4);
             this.gbJugador.Name = "gbJugador";
-            this.gbJugador.Size = new System.Drawing.Size(171, 88);
+            this.gbJugador.Padding = new System.Windows.Forms.Padding(4);
+            this.gbJugador.Size = new System.Drawing.Size(228, 108);
             this.gbJugador.TabIndex = 19;
             this.gbJugador.TabStop = false;
             this.gbJugador.Text = "Jugador";
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(59, 37);
+            this.tbNombre.Location = new System.Drawing.Point(79, 46);
+            this.tbNombre.Margin = new System.Windows.Forms.Padding(4);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(100, 20);
+            this.tbNombre.Size = new System.Drawing.Size(132, 22);
             this.tbNombre.TabIndex = 2;
             this.tbNombre.TextChanged += new System.EventHandler(this.tbNombre_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 42);
+            this.label1.Location = new System.Drawing.Point(8, 52);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(59, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Nombre:";
             // 
@@ -151,9 +160,11 @@
             this.gbDificultad.Controls.Add(this.rbIntermedio);
             this.gbDificultad.Controls.Add(this.rbExperto);
             this.gbDificultad.Controls.Add(this.rbFacil);
-            this.gbDificultad.Location = new System.Drawing.Point(281, 13);
+            this.gbDificultad.Location = new System.Drawing.Point(375, 16);
+            this.gbDificultad.Margin = new System.Windows.Forms.Padding(4);
             this.gbDificultad.Name = "gbDificultad";
-            this.gbDificultad.Size = new System.Drawing.Size(93, 88);
+            this.gbDificultad.Padding = new System.Windows.Forms.Padding(4);
+            this.gbDificultad.Size = new System.Drawing.Size(124, 108);
             this.gbDificultad.TabIndex = 18;
             this.gbDificultad.TabStop = false;
             this.gbDificultad.Text = "Dificultad";
@@ -161,9 +172,10 @@
             // rbIntermedio
             // 
             this.rbIntermedio.AutoSize = true;
-            this.rbIntermedio.Location = new System.Drawing.Point(6, 40);
+            this.rbIntermedio.Location = new System.Drawing.Point(8, 49);
+            this.rbIntermedio.Margin = new System.Windows.Forms.Padding(4);
             this.rbIntermedio.Name = "rbIntermedio";
-            this.rbIntermedio.Size = new System.Drawing.Size(74, 17);
+            this.rbIntermedio.Size = new System.Drawing.Size(91, 20);
             this.rbIntermedio.TabIndex = 7;
             this.rbIntermedio.Text = "Intermedio";
             this.rbIntermedio.UseVisualStyleBackColor = true;
@@ -172,9 +184,10 @@
             // rbExperto
             // 
             this.rbExperto.AutoSize = true;
-            this.rbExperto.Location = new System.Drawing.Point(6, 63);
+            this.rbExperto.Location = new System.Drawing.Point(8, 78);
+            this.rbExperto.Margin = new System.Windows.Forms.Padding(4);
             this.rbExperto.Name = "rbExperto";
-            this.rbExperto.Size = new System.Drawing.Size(61, 17);
+            this.rbExperto.Size = new System.Drawing.Size(74, 20);
             this.rbExperto.TabIndex = 8;
             this.rbExperto.Text = "Experto";
             this.rbExperto.UseVisualStyleBackColor = true;
@@ -184,9 +197,10 @@
             // 
             this.rbFacil.AutoSize = true;
             this.rbFacil.Checked = true;
-            this.rbFacil.Location = new System.Drawing.Point(6, 16);
+            this.rbFacil.Location = new System.Drawing.Point(8, 20);
+            this.rbFacil.Margin = new System.Windows.Forms.Padding(4);
             this.rbFacil.Name = "rbFacil";
-            this.rbFacil.Size = new System.Drawing.Size(47, 17);
+            this.rbFacil.Size = new System.Drawing.Size(57, 20);
             this.rbFacil.TabIndex = 6;
             this.rbFacil.TabStop = true;
             this.rbFacil.Text = "Facil";
@@ -197,17 +211,19 @@
             // 
             this.lbMarcador.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMarcador.FormattingEnabled = true;
-            this.lbMarcador.ItemHeight = 15;
-            this.lbMarcador.Location = new System.Drawing.Point(12, 117);
+            this.lbMarcador.ItemHeight = 19;
+            this.lbMarcador.Location = new System.Drawing.Point(16, 144);
+            this.lbMarcador.Margin = new System.Windows.Forms.Padding(4);
             this.lbMarcador.Name = "lbMarcador";
-            this.lbMarcador.Size = new System.Drawing.Size(363, 199);
+            this.lbMarcador.Size = new System.Drawing.Size(483, 232);
             this.lbMarcador.TabIndex = 17;
             // 
             // btnIniciarJuego
             // 
-            this.btnIniciarJuego.Location = new System.Drawing.Point(201, 379);
+            this.btnIniciarJuego.Location = new System.Drawing.Point(268, 466);
+            this.btnIniciarJuego.Margin = new System.Windows.Forms.Padding(4);
             this.btnIniciarJuego.Name = "btnIniciarJuego";
-            this.btnIniciarJuego.Size = new System.Drawing.Size(147, 23);
+            this.btnIniciarJuego.Size = new System.Drawing.Size(196, 28);
             this.btnIniciarJuego.TabIndex = 15;
             this.btnIniciarJuego.Text = "Iniciar Juego";
             this.btnIniciarJuego.UseVisualStyleBackColor = true;
@@ -217,9 +233,10 @@
             // 
             this.rbDemo.AutoSize = true;
             this.rbDemo.Checked = true;
-            this.rbDemo.Location = new System.Drawing.Point(6, 22);
+            this.rbDemo.Location = new System.Drawing.Point(8, 27);
+            this.rbDemo.Margin = new System.Windows.Forms.Padding(4);
             this.rbDemo.Name = "rbDemo";
-            this.rbDemo.Size = new System.Drawing.Size(53, 17);
+            this.rbDemo.Size = new System.Drawing.Size(65, 20);
             this.rbDemo.TabIndex = 22;
             this.rbDemo.TabStop = true;
             this.rbDemo.Text = "Demo";
@@ -229,9 +246,10 @@
             // rbJugar
             // 
             this.rbJugar.AutoSize = true;
-            this.rbJugar.Location = new System.Drawing.Point(6, 51);
+            this.rbJugar.Location = new System.Drawing.Point(8, 63);
+            this.rbJugar.Margin = new System.Windows.Forms.Padding(4);
             this.rbJugar.Name = "rbJugar";
-            this.rbJugar.Size = new System.Drawing.Size(51, 17);
+            this.rbJugar.Size = new System.Drawing.Size(62, 20);
             this.rbJugar.TabIndex = 23;
             this.rbJugar.Text = "Jugar";
             this.rbJugar.UseVisualStyleBackColor = true;
@@ -241,9 +259,11 @@
             // 
             this.groupBox1.Controls.Add(this.rbDemo);
             this.groupBox1.Controls.Add(this.rbJugar);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Location = new System.Drawing.Point(17, 16);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(74, 88);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(99, 108);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tipo juego";
@@ -254,9 +274,10 @@
             this.pictureBox0.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
             this.pictureBox0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox0.Enabled = false;
-            this.pictureBox0.Location = new System.Drawing.Point(13, 515);
+            this.pictureBox0.Location = new System.Drawing.Point(17, 586);
+            this.pictureBox0.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox0.Name = "pictureBox0";
-            this.pictureBox0.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox0.Size = new System.Drawing.Size(56, 52);
             this.pictureBox0.TabIndex = 27;
             this.pictureBox0.TabStop = false;
             // 
@@ -269,117 +290,126 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox1.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Enabled = false;
-            this.pictureBox1.Location = new System.Drawing.Point(79, 515);
+            this.pictureBox1.Location = new System.Drawing.Point(81, 586);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox1.Size = new System.Drawing.Size(56, 52);
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox2.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Enabled = false;
-            this.pictureBox2.Location = new System.Drawing.Point(152, 515);
+            this.pictureBox2.Location = new System.Drawing.Point(145, 586);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox2.Size = new System.Drawing.Size(56, 52);
             this.pictureBox2.TabIndex = 29;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox3.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Enabled = false;
-            this.pictureBox3.Location = new System.Drawing.Point(222, 515);
+            this.pictureBox3.Location = new System.Drawing.Point(209, 586);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox3.Size = new System.Drawing.Size(56, 52);
             this.pictureBox3.TabIndex = 30;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox4
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox4.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox4.Enabled = false;
-            this.pictureBox4.Location = new System.Drawing.Point(287, 515);
+            this.pictureBox4.Location = new System.Drawing.Point(272, 586);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox4.Size = new System.Drawing.Size(56, 52);
             this.pictureBox4.TabIndex = 34;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox5.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox5.Enabled = false;
-            this.pictureBox5.Location = new System.Drawing.Point(349, 515);
+            this.pictureBox5.Location = new System.Drawing.Point(336, 586);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox5.Size = new System.Drawing.Size(56, 52);
             this.pictureBox5.TabIndex = 33;
             this.pictureBox5.TabStop = false;
             // 
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox6.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox6.Enabled = false;
-            this.pictureBox6.Location = new System.Drawing.Point(420, 515);
+            this.pictureBox6.Location = new System.Drawing.Point(401, 586);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox6.Size = new System.Drawing.Size(56, 52);
             this.pictureBox6.TabIndex = 32;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox7
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox7.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox7.Enabled = false;
-            this.pictureBox7.Location = new System.Drawing.Point(489, 515);
+            this.pictureBox7.Location = new System.Drawing.Point(465, 586);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox7.Size = new System.Drawing.Size(56, 52);
             this.pictureBox7.TabIndex = 31;
             this.pictureBox7.TabStop = false;
             // 
             // pictureBox8
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox8.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox8.Enabled = false;
-            this.pictureBox8.Location = new System.Drawing.Point(558, 515);
+            this.pictureBox8.Location = new System.Drawing.Point(529, 586);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox8.Size = new System.Drawing.Size(56, 52);
             this.pictureBox8.TabIndex = 36;
             this.pictureBox8.TabStop = false;
             // 
             // pictureBox9
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.LightCoral;
-            this.pictureBox9.BackgroundImage = global::Tp1___Lab2___2023.Properties.Resources.Caballero_Humano;
+            this.pictureBox9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.BackgroundImage")));
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox9.Enabled = false;
-            this.pictureBox9.Location = new System.Drawing.Point(630, 515);
+            this.pictureBox9.Location = new System.Drawing.Point(593, 586);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(42, 42);
+            this.pictureBox9.Size = new System.Drawing.Size(56, 52);
             this.pictureBox9.TabIndex = 35;
             this.pictureBox9.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(866, 572);
+            this.ClientSize = new System.Drawing.Size(1151, 650);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox4);
@@ -398,7 +428,7 @@
             this.Controls.Add(this.lbMarcador);
             this.Controls.Add(this.btnIniciarJuego);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "pic";

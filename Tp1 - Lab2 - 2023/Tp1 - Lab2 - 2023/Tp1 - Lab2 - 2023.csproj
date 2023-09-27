@@ -86,7 +86,11 @@
       <Name>Componentes</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Imagenes\Caballero Oponente.png" />
+    <Content Include="Imagenes\Dragon Humano.png" />
+    <Content Include="Imagenes\Dragon Oponente.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Imagenes\Caballero Humano.png" />
   </ItemGroup>
