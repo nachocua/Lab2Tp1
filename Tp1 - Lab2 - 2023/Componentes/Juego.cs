@@ -88,10 +88,25 @@ namespace Componentes
             Random rnd = new Random();
             if (partidaValida)
             {
-                foreach (Pieza j in piezas)
+                foreach (Pieza unaPieza in piezas)
                 {
-                    j.Mover(rnd.Next());
+                    unaPieza.Mover(rnd.Next());
+                    if (Dificultad != "Facil")
+                    {
+                        if (HayDragon(unaPieza) )
+                        {
+                            // Avanzar o Retroceder
+                        }
+                        if (Dificultad == "Experto")
+                        {
+                            if (HayCalabozo(unaPieza))
+                            {
+                                //Hacer que pierda, que pierda turno, o nada
+                            }
+                        }
+                    }
                 }
+
             }
         }
         public bool AlguienGano(out string deQueJugador)
@@ -135,5 +150,38 @@ namespace Componentes
         {
             return tablero.TamañoTablero;
         }
+
+        public bool HayDragon(Pieza unaPieza)
+        {
+            bool state = false;
+            if (unaPieza is Caballero)
+            {
+                foreach (Pieza aux in piezas)
+                {
+                    if (aux.Alineación == unaPieza.Alineación)
+                    {
+                        state = true;
+                    }
+                }
+            }
+            return state;
+        }
+
+        public bool HayCalabozo(Pieza unaPieza)
+        {
+            bool state = false;
+            if (unaPieza is Caballero)
+            {
+                for (int i = 0; i < tablero.CantidadCalabozos; i++)
+                {
+                    if (unaPieza.Posición == tablero.PosicionCalabozo(i))
+                    {
+                        state = true;
+                    }
+                }
+            }
+            return state;
+        }
+
     }
 }

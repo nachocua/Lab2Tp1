@@ -24,6 +24,10 @@ namespace Tp1___Lab2___2023
             generarJugadores();
             HabilitarPictureBox();
         }
+        #region CargarNombres
+        /// <summary>
+        /// Metodo que llena un contenedor con 20 nombres de personas para ser usados luego de manera aleatoria
+        /// </summary>
         private void CargarNombres()
         {
             nombres.Add("Ana");
@@ -47,7 +51,11 @@ namespace Tp1___Lab2___2023
             nombres.Add("Santiago");
             nombres.Add("Teresa");
         }
-        #region Config Pictures Box
+        #endregion
+        #region SetPictureBox
+        /// <summary>
+        /// Completa un vector con las referencias de los pictureBox para poder operarlos de manera genérica
+        /// </summary>
         private void SetPictureBox()
         {
             pictureBoxes[0] = pictureBox0;
@@ -61,13 +69,25 @@ namespace Tp1___Lab2___2023
             pictureBoxes[8] = pictureBox8;
             pictureBoxes[9] = pictureBox9;
         }
+        /// <summary>
+        /// Mueve un PictureBox por encima del tablero
+        /// </summary>
+        /// <param name="unPictureBox">Referencia al pictureBox que se desea mover.</param>
+        /// <param name="indx">Indice de la pieza que se relaciona con su respectivo pictureBox.</param>
+        #endregion
+        #region ConfigPictureBox
         private void ConfigPictureBox(PictureBox unPictureBox, int indx)
         {
             unPictureBox.Location = CalcularPosiciónTablero(unJuego.getPieza(indx).Posición);
             unPictureBox.BackColor = GetBackColor(unJuego.getPieza(indx).Posición);
         }
         #endregion
-        #region Operar Pictures Box
+        #region GetBackColor
+        /// <summary>
+        /// Calcula la paleta de fondo segun la posición del tablero.
+        /// </summary>
+        /// <param name="indx">Indica la posición de la pieza en el tablero</param>
+        /// <returns>Devuelve un objeto de la clase Color que representa el color de fondo de la cuadricula</returns>
         private Color GetBackColor(int indx)
         {
             Color unColor = Color.AntiqueWhite;
@@ -82,6 +102,13 @@ namespace Tp1___Lab2___2023
             }
             return unColor;
         }
+        #endregion
+        #region CalcularPosiciónTablero
+        /// <summary>
+        /// Calcula la posición en la pantalla segun la posición del tablero.
+        /// </summary>
+        /// <param name="indx">Indica la posición de la pieza en el tablero</param>
+        /// <returns>Devuelve un objeto de la clase Point (x,y) que representa el pixel superior izquierdo de un elemento gráfico</returns>
         private Point CalcularPosiciónTablero(int indx)
         {
             Point unPunto = new Point();
@@ -98,23 +125,11 @@ namespace Tp1___Lab2___2023
             return unPunto;
         }
         #endregion
-        #region Cambio de Dificultad
-        private void rbFacil_CheckedChanged(object sender, EventArgs e)
+        #region CambiarDificultad
+        private void CambiarDificultad(object sender, EventArgs e)
         {
-            unJuego.Dificultad = rbFacil.Text;
-            tbNombre.Text = unJuego.Dificultad;
-            HabilitarPictureBox();
-        }
-        private void rbIntermedio_CheckedChanged(object sender, EventArgs e)
-        {
-            unJuego.Dificultad = rbIntermedio.Text;
-            tbNombre.Text = unJuego.Dificultad;
-            HabilitarPictureBox();
-        }
-        private void rbExperto_CheckedChanged(object sender, EventArgs e)
-        {
-            unJuego.Dificultad = rbExperto.Text;
-            tbNombre.Text = unJuego.Dificultad;
+            RadioButton unRadioButton = sender as RadioButton;
+            unJuego.Dificultad = unRadioButton.Text;
             HabilitarPictureBox();
         }
         #endregion
@@ -123,22 +138,24 @@ namespace Tp1___Lab2___2023
         {
             generarJugadores();
         }
-        private void rbDemo_CheckedChanged(object sender, EventArgs e)
+        #region CambiarDificultad
+        private void TipoJuego(object sender, EventArgs e)
         {
+            RadioButton unRadioButton = sender as RadioButton;
+            if (unRadioButton.Text == rbJugar.Text)
+            {
+                gbJugador.Enabled = true;
+            }
+            else
+            {
+                gbJugador.Enabled = false;
+            }
             generarJugadores();
-            gbJugador.Enabled = false;
         }
-        private void rbJugar_CheckedChanged(object sender, EventArgs e)
-        {
-            generarJugadores();
-            gbJugador.Enabled = true;
-        }
+        #endregion
         private void tbNombre_TextChanged(object sender, EventArgs e)
         {
-            if (rbJugar.Checked)
-            {
-                generarJugadores();
-            }
+            generarJugadores();
         }
         #endregion
         private void generarJugadores()
@@ -201,17 +218,13 @@ namespace Tp1___Lab2___2023
             int cont = 0;
             if (!inicio)
             {
-                /*
-                Width = 915;
-                Height = 502;
-                */
                 inicio = true;
                 unJuego.GenerarPiezas();
                 //btnIniciarJuego.Enabled = false;
-                foreach (PictureBox unPictureBox in pictureBoxes)
-                {
-                    unPictureBox.BringToFront();
-                }
+                gbDificultad.Enabled = false;
+                gbJugador.Enabled = false;
+                gbTipoJuego.Enabled = false;
+                gbVirtuales.Enabled = false;
             }
             else
             {
@@ -225,8 +238,6 @@ namespace Tp1___Lab2___2023
                     cont++;
                 }
             }
-            //MessageBox.Show(pictureBoxes[0].Location.ToString(), "Mi caballero");
-            //pictureBoxes[0].BringToFront();
         }
     }
 }

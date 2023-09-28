@@ -26,5 +26,9 @@ namespace Componentes
             Calabozo unCalabozo = new Calabozo("Dungeon " + pos, pos);
             //calabozos.Add(unCalabozo);
         }
+        public int PosicionCalabozo(int idx)
+        {
+            return ((Calabozo)calabozos[idx]).Posición;
+        }
     }
 }
