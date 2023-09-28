@@ -113,7 +113,7 @@ namespace Componentes
             return txt;
         }
         //Completar
-        private string JugarRonda(ArrayList txt, Random rnd)
+        public string JugarRonda(ArrayList txt, Random rnd)
         {
             string ganador = "";
             string line;

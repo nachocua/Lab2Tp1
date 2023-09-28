@@ -317,6 +317,9 @@ namespace Tp1___Lab2___2023
             if (rbJugar.Checked)
             {
                 lbMarcador.Items.Add("Humano: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
+
+                timerRonda.Interval = 2000; // 2 seg
+                timerRonda.Start();
             }
             for (int i=0; i<nuCantidadJugadores.Value; i++)
             {
@@ -329,6 +332,15 @@ namespace Tp1___Lab2___2023
             int seg = 3;
             FSplash splash = new FSplash(seg);
             splash.ShowDialog();
+        }
+
+        private void timerRonda_Tick(object sender, EventArgs e)
+        {
+            //ArrayList logPartida = new ArrayList();
+            //Random rnd = new Random();
+            //string ganador;
+            //ganador = unJuego.JugarRonda(logPartida, rnd);
+            timerRonda.Stop();
         }
     }
 }

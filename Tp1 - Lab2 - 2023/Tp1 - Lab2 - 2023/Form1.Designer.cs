@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gbVirtuales = new System.Windows.Forms.GroupBox();
             this.nuCantidadJugadores = new System.Windows.Forms.NumericUpDown();
@@ -61,6 +62,7 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.timerRonda = new System.Windows.Forms.Timer(this.components);
             this.gbVirtuales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuCantidadJugadores)).BeginInit();
             this.gbJugador.SuspendLayout();
@@ -465,6 +467,10 @@
             this.pictureBox15.TabIndex = 43;
             this.pictureBox15.TabStop = false;
             // 
+            // timerRonda
+            // 
+            this.timerRonda.Tick += new System.EventHandler(this.timerRonda_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,6 +569,7 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.PictureBox pictureBox15;
+        private System.Windows.Forms.Timer timerRonda;
     }
 }
 
