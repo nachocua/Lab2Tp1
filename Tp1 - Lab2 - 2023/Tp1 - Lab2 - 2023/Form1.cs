@@ -28,10 +28,10 @@ namespace Tp1___Lab2___2023
             HabilitarPictureBox();
         }
         #region CargarNombres
-            /// <summary>
-            /// Metodo que llena un contenedor con 20 nombres de personas para ser usados luego de manera aleatoria
-            /// </summary>
-            private void CargarNombres()
+        /// <summary>
+        /// Metodo que llena un contenedor con 20 nombres de personas para ser usados luego de manera aleatoria
+        /// </summary>
+        private void CargarNombres()
             {
                 nombres.Add("Ana");
                 nombres.Add("Beto");
@@ -323,6 +323,12 @@ namespace Tp1___Lab2___2023
                 unJugador = unJuego.GetJugador(i);
                 lbMarcador.Items.Add("Virtual: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
             }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            int seg = 3;
+            FSplash splash = new FSplash(seg);
+            splash.ShowDialog();
         }
     }
 }
