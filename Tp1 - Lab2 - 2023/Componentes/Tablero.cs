@@ -12,23 +12,23 @@ namespace Componentes
         {
             CantidadCalabozos = 0;
             TamañoTablero = tamaño;
+            calabozos = new ArrayList();
         }
         public void Reset()
         {
             CantidadCalabozos = 0;
-            //calabozos.Clear();
+            calabozos.Clear();
         }
-        public void AgregarCalabozo()
+        public void AgregarCalabozo(Random rnd)
         {
             CantidadCalabozos++;
-            Random rnd = new Random();
-            int pos = rnd.Next();
-            Calabozo unCalabozo = new Calabozo("Dungeon " + pos, pos);
-            //calabozos.Add(unCalabozo);
+            int pos = rnd.Next(50);
+            Calabozo unCalabozo = new Calabozo("Dungeon " + CantidadCalabozos, pos);
+            calabozos.Add(unCalabozo);
         }
-        public int PosicionCalabozo(int idx)
+        public Calabozo getCalabozo(int idx)
         {
-            return ((Calabozo)calabozos[idx]).Posición;
+            return (Calabozo)calabozos[idx];
         }
     }
 }

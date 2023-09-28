@@ -177,7 +177,7 @@ namespace Tp1___Lab2___2023
         /// </summary>
             private void generarJugadores()
             {
-                unJuego.Reset();
+                unJuego.ResetJugadores();
                 lbMarcador.Items.Clear();
                 unJuego.CantidadJugadores = Convert.ToInt32(nuCantidadJugadores.Value);
                 string nombre;
@@ -265,6 +265,8 @@ namespace Tp1___Lab2___2023
         {
             Random rnd = new Random();
             int cont = 0;
+            ArrayList logPartida = new ArrayList();
+            string ganador;
             if (!inicio)
             {
                 inicio = true;
@@ -275,10 +277,10 @@ namespace Tp1___Lab2___2023
                 gbTipoJuego.Enabled = false;
                 gbVirtuales.Enabled = false;
             }
-            else
+            logPartida = unJuego.IniciarPartida(out ganador);
+            foreach(string unRenglon in logPartida)
             {
-                ArrayList txt = new ArrayList();
-                unJuego.JugarRonda(txt, rnd);
+                lBoxLog.Items.Add(unRenglon);
             }
             foreach (PictureBox unPictureBox in pictureBoxes)
             {
@@ -287,6 +289,17 @@ namespace Tp1___Lab2___2023
                     ConfigPictureBox(unPictureBox, cont);
                     cont++;
                 }
+            }
+            Jugador unJugador = unJuego.GetJugador(0);
+            lbMarcador.Items.Clear();
+            if (rbJugar.Checked)
+            {
+                lbMarcador.Items.Add("Humano: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
+            }
+            for (int i=0; i<nuCantidadJugadores.Value; i++)
+            {
+                unJugador = unJuego.GetJugador(i);
+                lbMarcador.Items.Add("Virtual: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
             }
         }
     }

@@ -36,6 +36,7 @@ namespace Componentes
             tablero = new Tablero();
             CantidadJugadores = cantidadJugadores;
             Dificultad = "Facil";
+            NroJuego = 0;
         }
         public void CargarJugador(string nombre, bool humano = false)
         {
@@ -60,58 +61,80 @@ namespace Componentes
                 piezas.Add(unaPieza);
                 if (Dificultad != "Facil")
                 {
-                    unaPieza = new Dragon(auxJug.Nombre, rnd.Next(tablero.TamañoTablero), auxJug.Nombre);
+                    unaPieza = new Dragon(auxJug.Nombre, rnd.Next(tablero.TamañoTablero-1), auxJug.Nombre);
                     piezas.Add(unaPieza);
                     if (CantidadJugadores == 2)
                     {
-                        unaPieza = new Dragon(auxJug.Nombre, rnd.Next(tablero.TamañoTablero), auxJug.Nombre);
+                        unaPieza = new Dragon(auxJug.Nombre, rnd.Next(tablero.TamañoTablero-1), auxJug.Nombre);
                         piezas.Add(unaPieza);
                     }
                 }
             }
-            /*if (Dificultad == "Experto")
+            if (Dificultad == "Experto")
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    tablero.AgregarCalabozo();
+                    tablero.AgregarCalabozo(rnd);
                 }
-            }*/
+            }
         }
         public void Reset()
         {
             tablero.Reset();
             piezas.Clear();
+        }
+        public void ResetJugadores()
+        {
             jugadores.Clear();
         }
         //Completar
-        public ArrayList IniciarPartida()
+        public ArrayList IniciarPartida(out string ganador)
         {
             Random rnd = new Random();
-            string ganador;
             ArrayList txt = new ArrayList();
-            GenerarPiezas();
+            string line;
+            txt.Add("|------------------------------|");
+            txt.Add("|Juego "+NroJuego+" - "+dificultad + "\t       |");
+            txt.Add("|------------------------------|");
+            txt.Add("|");
+            txt.Add("|");
+            txt.Add("|");
+            if (Dificultad == "Experto")
+            {
+                for (int i = 0; i < tablero.CantidadCalabozos; i++)
+                {
+                    line = string.Format("Posicion de {0}: {1}", tablero.getCalabozo(i).Nombre, tablero.getCalabozo(i).Posición);
+                    txt.Add(line);
+                }
+            }
             while (!AlguienGano(out ganador))
             {
                 ganador = JugarRonda(txt, rnd);
             }
             txt.Add("El ganador es " + ganador);
+            foreach (Jugador unJugador in jugadores)
+            {
+                if (ganador == unJugador.Nombre)
+                {
+                    unJugador.Ganaste();
+                }
+            }
             return txt;
         }
         //Completar
-        public string JugarRonda(ArrayList txt, Random rnd)
+        private string JugarRonda(ArrayList txt, Random rnd)
         {
             string ganador = "";
-            //Random rnd = new Random();
             if (partidaValida)
             {
+                string line;
                 foreach (Pieza unaPieza in piezas)
                 {
                     if (!AlguienGano(out ganador))
                     {
-                        string line;
                         if (unaPieza is Caballero)
                         {
-                            line = string.Format("{0,-20} se movio a la pos | {1,3}", "Caballero de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next(1,6)));
+                            line = string.Format("{0,-20} se movio a la pos | {1,3}", "Caballero de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next(1, 6)));
                             txt.Add(line);
                         }
                         if (Dificultad != "Facil")
@@ -124,7 +147,7 @@ namespace Componentes
                             if (HayDragon(unaPieza) > 0)
                             {
                                 // Avanzar
-                                line = string.Format("{0,-10} se encontro un dragon suyo, avanza {1} casillas", unaPieza.Alineación, 5);
+                                line = string.Format("{0,-10} se encontro un dragon aliado, avanza {1} casillas", unaPieza.Alineación, 5);
                                 line += " (Pos: " + unaPieza.Mover(5) + " )";
                                 txt.Add(line);
                             }
@@ -140,7 +163,24 @@ namespace Componentes
                                 if (HayCalabozo(unaPieza))
                                 {
                                     //Hacer que pierda, que pierda turno, o nada
-
+                                    if (HayDragon(unaPieza) == 0)
+                                    {
+                                        line = string.Format("{0,-20} entro a un calabozo, pierde un turno", "Caballero de " + unaPieza.Alineación);
+                                        //((Caballero)unaPieza).PerderTurno();
+                                        PerderTurno(unaPieza);
+                                        txt.Add(line);
+                                    }
+                                    else if (HayDragon(unaPieza) > 0)
+                                    {
+                                        line = string.Format("{0,-20} entro a un calabozo, pero su dragon estaba para rescatarlo", "Caballero de " + unaPieza.Alineación);
+                                        txt.Add(line);
+                                    }
+                                    else if (HayDragon(unaPieza) < 0)
+                                    {
+                                        line = string.Format("{0,-20} entro a un calabozo con un dragon enemigo, pierde el juego", "Caballero de " + unaPieza.Alineación);
+                                        EliminarJugador(unaPieza);
+                                        txt.Add(line);
+                                    }
                                 }
                             }
                         }
@@ -148,44 +188,6 @@ namespace Componentes
                 }
             }
             return ganador;
-        }
-        public int HayDragon(Pieza unaPieza)
-        {
-            int state = 0;
-            if (unaPieza is Caballero)
-            {
-                foreach (Pieza aux in piezas)
-                {
-                    if (aux is Dragon)
-                    {
-                        if (unaPieza.Posición == aux.Posición)
-                        {
-                            if (unaPieza.Alineación == aux.Alineación)
-                            {
-                                state++;
-                            }
-                            else state--;
-                        }
-                    }
-                }
-            }
-            return state;
-        }
-
-        public bool HayCalabozo(Pieza unaPieza)
-        {
-            bool state = false;
-            if (unaPieza is Caballero)
-            {
-                for (int i = 0; i < tablero.CantidadCalabozos; i++)
-                {
-                    if (unaPieza.Posición == tablero.PosicionCalabozo(i))
-                    {
-                        state = true;
-                    }
-                }
-            }
-            return state;
         }
         public bool AlguienGano(out string deQueJugador)
         {
@@ -212,54 +214,65 @@ namespace Componentes
         {
             return (Pieza)piezas[indx];
         }
-        public Jugador GetJugador(string alineacion)
+        public Jugador GetJugador(int indx)
         {
-            Jugador unJugador = null;
-            foreach (Jugador aux in jugadores)
-            {
-                if (aux.Nombre == alineacion)
-                {
-                    unJugador = aux;
-                }
-            }
-            return unJugador;
+            return (Jugador)jugadores[indx];
         }
         public int TamañoTablero()
         {
             return tablero.TamañoTablero;
         }
-
-        //public bool HayDragon(Pieza unaPieza)
-        //{
-        //    bool state = false;
-        //    if (unaPieza is Caballero)
-        //    {
-        //        foreach (Pieza aux in piezas)
-        //        {
-        //            if (aux.Alineación == unaPieza.Alineación)
-        //            {
-        //                state = true;
-        //            }
-        //        }
-        //    }
-        //    return state;
-        //}
-
-        //public bool HayCalabozo(Pieza unaPieza)
-        //{
-        //    bool state = false;
-        //    if (unaPieza is Caballero)
-        //    {
-        //        for (int i = 0; i < tablero.CantidadCalabozos; i++)
-        //        {
-        //            if (unaPieza.Posición == tablero.PosicionCalabozo(i))
-        //            {
-        //                state = true;
-        //            }
-        //        }
-        //    }
-        //    return state;
-        //}
-
+        public int HayDragon(Pieza unaPieza)
+        {
+            int state = 0;
+            if (unaPieza is Caballero)
+            {
+                foreach (Pieza aux in piezas)
+                {
+                    if (aux is Dragon)
+                    {
+                        if (unaPieza.Posición == aux.Posición)
+                        {
+                            if (unaPieza.Alineación == aux.Alineación)
+                            {
+                                state++;
+                            }
+                            else state--;
+                        }
+                    }
+                }
+            }
+            return state;
+        }
+        public bool HayCalabozo(Pieza unaPieza)
+        {
+            bool state = false;
+            if (unaPieza is Caballero)
+            {
+                for (int i = 0; i < tablero.CantidadCalabozos; i++)
+                {
+                    if (unaPieza.Posición == tablero.getCalabozo(i).Posición)
+                    {
+                        state = true;
+                    }
+                }
+            }
+            return state;
+        }
+        public void EliminarJugador(Pieza unaPieza)
+        {
+            foreach (Jugador unJugador in jugadores)
+            {
+                if (unJugador.Nombre == unaPieza.Alineación)
+                {
+                    jugadores.Remove(unJugador);
+                }
+            }
+        }
+        public void PerderTurno(Pieza unaPieza)
+        {
+            ((Caballero)unaPieza).PerderTurno();
+            unaPieza.Mover(0);
+        }
     }
 }

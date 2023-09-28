@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gbVirtuales = new System.Windows.Forms.GroupBox();
             this.nuCantidadJugadores = new System.Windows.Forms.NumericUpDown();
@@ -55,10 +54,10 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.tTip = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.lBoxLog = new System.Windows.Forms.ListBox();
             this.gbVirtuales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nuCantidadJugadores)).BeginInit();
             this.gbJugador.SuspendLayout();
@@ -82,9 +81,9 @@
             // gbVirtuales
             // 
             this.gbVirtuales.Controls.Add(this.nuCantidadJugadores);
-            this.gbVirtuales.Location = new System.Drawing.Point(16, 326);
+            this.gbVirtuales.Location = new System.Drawing.Point(327, 13);
             this.gbVirtuales.Name = "gbVirtuales";
-            this.gbVirtuales.Size = new System.Drawing.Size(130, 76);
+            this.gbVirtuales.Size = new System.Drawing.Size(130, 88);
             this.gbVirtuales.TabIndex = 21;
             this.gbVirtuales.TabStop = false;
             this.gbVirtuales.Text = "Jugadores Virtuales";
@@ -92,7 +91,7 @@
             // nuCantidadJugadores
             // 
             this.nuCantidadJugadores.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nuCantidadJugadores.Location = new System.Drawing.Point(7, 30);
+            this.nuCantidadJugadores.Location = new System.Drawing.Point(6, 34);
             this.nuCantidadJugadores.Maximum = new decimal(new int[] {
             4,
             0,
@@ -116,11 +115,11 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(380, 19);
+            this.webBrowser1.Location = new System.Drawing.Point(472, 13);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(472, 383);
+            this.webBrowser1.Size = new System.Drawing.Size(375, 335);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("http://127.0.0.1:5500/", System.UriKind.Absolute);
             // 
@@ -131,14 +130,14 @@
             this.gbJugador.Enabled = false;
             this.gbJugador.Location = new System.Drawing.Point(93, 13);
             this.gbJugador.Name = "gbJugador";
-            this.gbJugador.Size = new System.Drawing.Size(171, 88);
+            this.gbJugador.Size = new System.Drawing.Size(129, 88);
             this.gbJugador.TabIndex = 19;
             this.gbJugador.TabStop = false;
             this.gbJugador.Text = "Jugador";
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(59, 37);
+            this.tbNombre.Location = new System.Drawing.Point(16, 50);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(100, 20);
             this.tbNombre.TabIndex = 2;
@@ -147,7 +146,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 42);
+            this.label1.Location = new System.Drawing.Point(13, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 3;
@@ -158,7 +157,7 @@
             this.gbDificultad.Controls.Add(this.rbIntermedio);
             this.gbDificultad.Controls.Add(this.rbExperto);
             this.gbDificultad.Controls.Add(this.rbFacil);
-            this.gbDificultad.Location = new System.Drawing.Point(281, 13);
+            this.gbDificultad.Location = new System.Drawing.Point(228, 13);
             this.gbDificultad.Name = "gbDificultad";
             this.gbDificultad.Size = new System.Drawing.Size(93, 88);
             this.gbDificultad.TabIndex = 18;
@@ -202,17 +201,18 @@
             // 
             // lbMarcador
             // 
+            this.lbMarcador.Enabled = false;
             this.lbMarcador.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbMarcador.FormattingEnabled = true;
             this.lbMarcador.ItemHeight = 15;
             this.lbMarcador.Location = new System.Drawing.Point(12, 117);
             this.lbMarcador.Name = "lbMarcador";
-            this.lbMarcador.Size = new System.Drawing.Size(363, 199);
+            this.lbMarcador.Size = new System.Drawing.Size(454, 64);
             this.lbMarcador.TabIndex = 17;
             // 
             // btnIniciarJuego
             // 
-            this.btnIniciarJuego.Location = new System.Drawing.Point(201, 354);
+            this.btnIniciarJuego.Location = new System.Drawing.Point(391, 369);
             this.btnIniciarJuego.Name = "btnIniciarJuego";
             this.btnIniciarJuego.Size = new System.Drawing.Size(147, 23);
             this.btnIniciarJuego.TabIndex = 15;
@@ -411,12 +411,25 @@
             this.pictureBox12.TabIndex = 39;
             this.pictureBox12.TabStop = false;
             // 
+            // lBoxLog
+            // 
+            this.lBoxLog.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lBoxLog.FormattingEnabled = true;
+            this.lBoxLog.ItemHeight = 15;
+            this.lBoxLog.Location = new System.Drawing.Point(12, 194);
+            this.lBoxLog.Name = "lBoxLog";
+            this.lBoxLog.ScrollAlwaysVisible = true;
+            this.lBoxLog.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lBoxLog.Size = new System.Drawing.Size(454, 154);
+            this.lBoxLog.TabIndex = 40;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(859, 530);
+            this.Controls.Add(this.lBoxLog);
             this.Controls.Add(this.pictureBox12);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox2);
@@ -494,10 +507,10 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox11;
-        private System.Windows.Forms.ToolTip tTip;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox12;
+        private System.Windows.Forms.ListBox lBoxLog;
     }
 }
 

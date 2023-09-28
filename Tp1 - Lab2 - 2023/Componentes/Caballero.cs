@@ -2,16 +2,16 @@
 {
     public class Caballero : Pieza
     {
-        private bool Congelado;
+        private bool congelado;
         public Caballero(string nombre, int posición, string alineación) : base(nombre, posición, alineación)
         {
-            Congelado = false;
+            congelado = false;
         }
         public override int Mover(int n)
         {
-            if(Congelado) 
+            if(congelado) 
             {
-                Congelado = false;
+                congelado = false;
             }
             else
             {
@@ -21,8 +21,16 @@
                 {
                     Posición = 49;
                 }
+                if (Posición < 0)
+                {
+                    Posición = 0;
+                }
             }
             return Posición;
+        }
+        public void PerderTurno()
+        {
+            congelado = true;
         }
     }
 }

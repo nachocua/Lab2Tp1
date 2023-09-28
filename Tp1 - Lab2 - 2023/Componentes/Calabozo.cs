@@ -1,6 +1,6 @@
 ﻿namespace Componentes
 {
-    internal class Calabozo
+    public class Calabozo
     {
         public string Nombre { get; protected set; }
         public int Posición { get; protected set; }
