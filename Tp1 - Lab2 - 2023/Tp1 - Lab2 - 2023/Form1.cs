@@ -9,24 +9,36 @@ namespace Tp1___Lab2___2023
 {
     public partial class Form1 : Form
     {
-        private Juego unJuego;
-        private PictureBox[] picturePiezas;
-        private PictureBox[] pictureCalabozos;
-        private bool inicio;
-        private ArrayList nombres;
-        public Form1()
+        #region Atributos y prop
+            private Juego unJuego;
+            private PictureBox[] picturePiezas;
+            private PictureBox[] pictureCalabozos;
+            private ArrayList nombres;
+            private Random rnd;
+            private ArrayList nombresEnUso;
+        #endregion
+        #region Cuando Arranca el Form
+            public Form1()
+            {
+                InitializeComponent();
+                unJuego = new Juego();
+                picturePiezas = new PictureBox[13];
+                pictureCalabozos = new PictureBox[3];
+                nombres = new ArrayList();
+                rnd = new Random();
+                nombresEnUso = new ArrayList();
+                CargarNombres();
+                SetPictureBox();
+                generarJugadores();
+                HabilitarPictureBox();
+            }
+            private void Form1_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
-            unJuego = new Juego();
-            picturePiezas = new PictureBox[13];
-            pictureCalabozos = new PictureBox[3];
-            nombres = new ArrayList();
-            inicio = false;
-            CargarNombres();
-            SetPictureBox();
-            generarJugadores();
-            HabilitarPictureBox();
+            int seg = 3;
+            //FSplash splash = new FSplash(seg);
+            //splash.ShowDialog();
         }
+        #endregion
         #region CargarNombres
         /// <summary>
         /// Metodo que llena un contenedor con 20 nombres de personas para ser usados luego de manera aleatoria
@@ -195,7 +207,6 @@ namespace Tp1___Lab2___2023
                 unJuego.CantidadJugadores = Convert.ToInt32(nuCantidadJugadores.Value);
                 string nombre;
                 int virtualACrear = unJuego.CantidadJugadores - 1;
-                Random rnd = new Random();
                 if (rbJugar.Checked)
                 {
                     unJuego.CargarJugador(tbNombre.Text, true);
@@ -207,8 +218,22 @@ namespace Tp1___Lab2___2023
                 }
                 for (int i = 0; i < virtualACrear; i++)
                 {
-                    nombre = (string)nombres[rnd.Next(20)];
+                    bool valido = false;
+                    nombre = null;
+                    while(!valido)
+                    {
+                        valido = true;
+                        nombre = (string)nombres[rnd.Next(20)];
+                        foreach (string unNombreEnUso in nombresEnUso)
+                        {
+                            if (unNombreEnUso == nombre)
+                            {
+                                valido = false;
+                            }
+                        }
+                    }
                     unJuego.CargarJugador(nombre);
+                    nombresEnUso.Add(nombre);
                     lbMarcador.Items.Add("Virtual: " + nombre + ". 0 Puntos.");
                 }
                 HabilitarPictureBox();
@@ -276,19 +301,37 @@ namespace Tp1___Lab2___2023
         #endregion
         private void btnIniciarJuego_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            int cont = 0;
-            ArrayList logPartida = new ArrayList();
-            string ganador;
-            if (!inicio)
+            int Partidas = 1;
+            int i,
+                j;
+            if (rbDemo.Checked)
             {
-                inicio = true;
+                Partidas = 3;
+            }
+            for (i=0; i<Partidas; i++)
+            {
+                if(rbDemo.Checked)
+                {
+                    switch(i)
+                    {
+                        case 0:
+                            unJuego.Dificultad = "Facil";
+                            break;
+                        case 1:
+                            unJuego.Dificultad = "Intermedio";
+                            break;
+                        case 2:
+                            unJuego.Dificultad = "Experto";
+                            break;
+                    }
+                    HabilitarPictureBox();
+                }
+                int cont = 0;
+                ArrayList logPartida = new ArrayList();
+                string ganador;
+                InteractuarInterfaz(false);
+                unJuego.Reset();
                 unJuego.GenerarPiezas();
-                //btnIniciarJuego.Enabled = false;
-                gbDificultad.Enabled = false;
-                gbJugador.Enabled = false;
-                gbTipoJuego.Enabled = false;
-                gbVirtuales.Enabled = false;
                 if (unJuego.Dificultad == "Experto")
                 {
                     foreach (PictureBox unPictureBox in pictureCalabozos)
@@ -297,50 +340,47 @@ namespace Tp1___Lab2___2023
                         cont++;
                     }
                 }
-            }
-            cont = 0;
-            logPartida = unJuego.IniciarPartida(out ganador);
-            foreach(string unRenglon in logPartida)
-            {
-                lBoxLog.Items.Add(unRenglon);
-            }
-            foreach (PictureBox unPictureBox in picturePiezas)
-            {
-                if (unPictureBox.Visible)
+                cont = 0;
+                logPartida = unJuego.IniciarPartida(out ganador);
+                foreach (string unRenglon in logPartida)
                 {
-                    ConfigPictureBox(unPictureBox, cont);
-                    cont++;
+                    lBoxLog.Items.Add(unRenglon);
+                }
+                foreach (PictureBox unPictureBox in picturePiezas)
+                {
+                    if (unPictureBox.Visible)
+                    {
+                        ConfigPictureBox(unPictureBox, cont);
+                        cont++;
+                    }
+                }
+                lbMarcador.Items.Clear();
+                Jugador unJugador = unJuego.GetJugador(0);
+                if (rbJugar.Checked)
+                {
+                    lbMarcador.Items.Add("Humano: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
+                }
+                for (j = 0; j < nuCantidadJugadores.Value; j++)
+                {
+                    unJugador = unJuego.GetJugador(j);
+                    lbMarcador.Items.Add("Virtual: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
                 }
             }
-            lbMarcador.Items.Clear();
-            Jugador unJugador = unJuego.GetJugador(0);
-            if (rbJugar.Checked)
-            {
-                lbMarcador.Items.Add("Humano: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
-
-                timerRonda.Interval = 2000; // 2 seg
-                timerRonda.Start();
-            }
-            for (int i=0; i<nuCantidadJugadores.Value; i++)
-            {
-                unJugador = unJuego.GetJugador(i);
-                lbMarcador.Items.Add("Virtual: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
-            }
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            int seg = 3;
-            FSplash splash = new FSplash(seg);
-            splash.ShowDialog();
-        }
-
         private void timerRonda_Tick(object sender, EventArgs e)
         {
             //ArrayList logPartida = new ArrayList();
             //Random rnd = new Random();
             //string ganador;
             //ganador = unJuego.JugarRonda(logPartida, rnd);
-            timerRonda.Stop();
+            //timerRonda.Stop();
+        }
+        private void InteractuarInterfaz(bool habilitar)
+        {
+            gbDificultad.Enabled = habilitar;
+            gbJugador.Enabled = habilitar;
+            gbTipoJuego.Enabled = habilitar;
+            gbVirtuales.Enabled = habilitar;
         }
     }
 }

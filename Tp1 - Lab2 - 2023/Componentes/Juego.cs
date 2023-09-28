@@ -13,7 +13,6 @@ namespace Componentes
             }
             set
             {
-
                 if (value == "Facil" || value == "Experto" || value == "Intermedio")
                 {
                     dificultad = value;
@@ -81,6 +80,7 @@ namespace Componentes
         //Completar
         public ArrayList IniciarPartida(out string ganador)
         {
+            NroJuego++;
             Random rnd = new Random();
             ArrayList txt = new ArrayList();
             string line;
