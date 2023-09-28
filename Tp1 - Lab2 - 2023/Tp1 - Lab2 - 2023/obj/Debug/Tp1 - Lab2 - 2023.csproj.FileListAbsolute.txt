@@ -73,3 +73,6 @@ D:\Escritorio\Laboratorio 2\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\obj\Debu
 D:\Escritorio\Laboratorio 2\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\obj\Debug\Tp1 - Lab2 - 2023.csproj.CopyComplete
 D:\Escritorio\Laboratorio 2\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\obj\Debug\Tp1 - Lab2 - 2023.exe
 D:\Escritorio\Laboratorio 2\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\obj\Debug\Tp1 - Lab2 - 2023.pdb
+C:\repos\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\bin\Debug\Componentes.dll
+C:\repos\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\bin\Debug\Componentes.pdb
+C:\repos\Lab2Tp1\Tp1 - Lab2 - 2023\Tp1 - Lab2 - 2023\obj\Debug\Tp1 - Lab2 - 2023.csproj.CopyComplete

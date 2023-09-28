@@ -108,26 +108,31 @@ namespace Componentes
                 {
                     if (!AlguienGano(out ganador))
                     {
+                        string line;
                         if (unaPieza is Caballero)
                         {
-                            string line;
-                            line = string.Format("Caballero de {0,-10} se movio a la pos | {1,3}", unaPieza.Alineación, unaPieza.Mover(rnd.Next()));
+                            line = string.Format("{0,-20} se movio a la pos | {1,3}", "Caballero de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next(1,6)));
                             txt.Add(line);
                         }
                         if (Dificultad != "Facil")
                         {
+                            if (unaPieza is Dragon)
+                            {
+                                line = string.Format("{0,-20} se movio a la pos | {1,3}", "Dragon de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next()));
+                                txt.Add(line);
+                            }
                             if (HayDragon(unaPieza) > 0)
                             {
                                 // Avanzar
-                                line = string.Format("{0,-10} se encontro un dragon suyo, avanza {1} casillas", unaPieza.Alineación, unaPieza.Mover(5));
-                                line += " (Pos: " + unaPieza.Posición + " )";
+                                line = string.Format("{0,-10} se encontro un dragon suyo, avanza {1} casillas", unaPieza.Alineación, 5);
+                                line += " (Pos: " + unaPieza.Mover(5) + " )";
                                 txt.Add(line);
                             }
                             else if (HayDragon(unaPieza) < 0)
                             {
                                 //Retroceder
-                                line = string.Format("{0,-10} se encontro un dragon enemigo, retrocede {1} casillas", unaPieza.Alineación, unaPieza.Mover(-5));
-                                line += " (Pos: " + unaPieza.Posición + " )";
+                                line = string.Format("{0,-10} se encontro un dragon enemigo, retrocede {1} casillas", unaPieza.Alineación, 5);
+                                line += " (Pos: " + unaPieza.Mover(-5) + " )";
                                 txt.Add(line);
                             }
                             if (Dificultad == "Experto")
@@ -135,6 +140,7 @@ namespace Componentes
                                 if (HayCalabozo(unaPieza))
                                 {
                                     //Hacer que pierda, que pierda turno, o nada
+
                                 }
                             }
                         }

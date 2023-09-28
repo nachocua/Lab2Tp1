@@ -15,7 +15,8 @@
             }
             else
             {
-                Posición += (n % 6) + 1;
+                Posición += n;
+                //Posición += (n % 6) + 1;
                 if (Posición > 49)
                 {
                     Posición = 49;
