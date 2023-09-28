@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Tp1___Lab2___2023
@@ -16,9 +17,11 @@ namespace Tp1___Lab2___2023
             private ArrayList nombres;
             private Random rnd;
             private ArrayList nombresEnUso;
+            private bool iniciado;
+            private string winner;
         #endregion
         #region Cuando Arranca el Form
-            public Form1()
+        public Form1()
             {
                 InitializeComponent();
                 unJuego = new Juego();
@@ -31,13 +34,14 @@ namespace Tp1___Lab2___2023
                 SetPictureBox();
                 generarJugadores();
                 HabilitarPictureBox();
+                iniciado = false;
             }
             private void Form1_Load(object sender, EventArgs e)
-        {
-            int seg = 3;
-            //FSplash splash = new FSplash(seg);
-            //splash.ShowDialog();
-        }
+            {
+                int seg = 3;
+                FSplash splash = new FSplash(seg);
+                splash.ShowDialog();
+            }
         #endregion
         #region CargarNombres
         /// <summary>
@@ -182,10 +186,14 @@ namespace Tp1___Lab2___2023
                 if (unRadioButton.Text == rbJugar.Text)
                 {
                     gbJugador.Enabled = true;
+                    btnRonda.Visible = true;
+                    btnIniciarJuego.Visible = false;
                 }
                 else
                 {
                     gbJugador.Enabled = false;
+                    btnRonda.Visible = false;
+                    btnIniciarJuego.Visible = true;
                 }
                 generarJugadores();
             }
@@ -381,6 +389,71 @@ namespace Tp1___Lab2___2023
             gbJugador.Enabled = habilitar;
             gbTipoJuego.Enabled = habilitar;
             gbVirtuales.Enabled = habilitar;
+        }
+        private void btnRonda_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            int cont = 0;
+            ArrayList logPartida = new ArrayList();
+            if (!iniciado)
+            {
+                lBoxLog.Items.Clear();
+                iniciado = true;
+                unJuego.GenerarPiezas();
+            }
+            btnIniciarJuego.Enabled = false;
+            InteractuarInterfaz(false);
+
+            if (unJuego.Dificultad == "Experto")
+            {
+                foreach (PictureBox unPictureBox in pictureCalabozos)
+                {
+                    ConfigPictureBox(unPictureBox, cont, false);
+                    cont++;
+                }
+            }
+            cont = 0;
+            //logPartida = unJuego.IniciarPartida(out ganador);
+            if (winner == null)
+            {
+                winner = unJuego.JugarRonda(logPartida, rnd);
+                foreach (string unRenglon in logPartida)
+                {
+                    lBoxLog.Items.Add(unRenglon);
+                }
+                foreach (PictureBox unPictureBox in picturePiezas)
+                {
+                    if (unPictureBox.Visible)
+                    {
+                        ConfigPictureBox(unPictureBox, cont);
+                        cont++;
+                    }
+                }
+            }
+            else
+            {
+                lBoxLog.Items.Add("Ganador: " + winner);
+                unJuego.SumarPuntos(winner);
+                unJuego.Reset();
+                InteractuarInterfaz(true);
+                winner = null;
+                iniciado = false;
+                lbMarcador.Items.Clear();
+                Jugador unJugador = unJuego.GetJugador(0);
+
+                if (rbJugar.Checked)
+                {
+                    lbMarcador.Items.Add("Humano: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
+                    /*
+                                    timerRonda.Interval = 2000; // 2 seg
+                                    timerRonda.Start();*/
+                }
+                for (int i = 1; i < nuCantidadJugadores.Value; i++)
+                {
+                    unJugador = unJuego.GetJugador(i);
+                    lbMarcador.Items.Add("Virtual: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");
+                }
+            }
         }
     }
 }

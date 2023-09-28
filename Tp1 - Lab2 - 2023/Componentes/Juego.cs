@@ -266,5 +266,15 @@ namespace Componentes
         {
             return tablero.getCalabozo(indx).Posición;
         }
+        public void SumarPuntos(string ganador)
+        {
+            foreach (Jugador j in jugadores)
+            {
+                if (j.Nombre == ganador)
+                {
+                    j.Ganaste();
+                }
+            }
+        }
     }
 }
