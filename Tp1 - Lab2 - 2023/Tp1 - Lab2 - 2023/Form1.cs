@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Tp1___Lab2___2023
@@ -9,14 +10,16 @@ namespace Tp1___Lab2___2023
     public partial class Form1 : Form
     {
         private Juego unJuego;
-        private PictureBox[] pictureBoxes;
+        private PictureBox[] picturePiezas;
+        private PictureBox[] pictureCalabozos;
         private bool inicio;
         private ArrayList nombres;
         public Form1()
         {
             InitializeComponent();
             unJuego = new Juego();
-            pictureBoxes = new PictureBox[13];
+            picturePiezas = new PictureBox[13];
+            pictureCalabozos = new PictureBox[3];
             nombres = new ArrayList();
             inicio = false;
             CargarNombres();
@@ -58,20 +61,23 @@ namespace Tp1___Lab2___2023
             /// </summary>
             private void SetPictureBox()
             {
-                pictureBoxes[0] = pictureBox0;
-                pictureBoxes[1] = pictureBox1;
-                pictureBoxes[2] = pictureBox2;
-                pictureBoxes[3] = pictureBox3;
-                pictureBoxes[4] = pictureBox4;
-                pictureBoxes[5] = pictureBox5;
-                pictureBoxes[6] = pictureBox6;
-                pictureBoxes[7] = pictureBox7;
-                pictureBoxes[8] = pictureBox8;
-                pictureBoxes[9] = pictureBox9;
-                pictureBoxes[10] = pictureBox10;
-                pictureBoxes[11] = pictureBox11;
-                pictureBoxes[12] = pictureBox12;
-            }
+                picturePiezas[0] = pictureBox0;
+                picturePiezas[1] = pictureBox1;
+                picturePiezas[2] = pictureBox2;
+                picturePiezas[3] = pictureBox3;
+                picturePiezas[4] = pictureBox4;
+                picturePiezas[5] = pictureBox5;
+                picturePiezas[6] = pictureBox6;
+                picturePiezas[7] = pictureBox7;
+                picturePiezas[8] = pictureBox8;
+                picturePiezas[9] = pictureBox9;
+                picturePiezas[10] = pictureBox10;
+                picturePiezas[11] = pictureBox11;
+                picturePiezas[12] = pictureBox12;
+                pictureCalabozos[0] = pictureBox13;
+                pictureCalabozos[1] = pictureBox14;
+                pictureCalabozos[2] = pictureBox15;
+        }
         #endregion
         #region ConfigPictureBox
             /// <summary>
@@ -79,10 +85,17 @@ namespace Tp1___Lab2___2023
             /// </summary>
             /// <param name="unPictureBox">Referencia al pictureBox que se desea mover.</param>
             /// <param name="indx">Indice de la pieza que se relaciona con su respectivo pictureBox.</param>
-            private void ConfigPictureBox(PictureBox unPictureBox, int indx)
+            private void ConfigPictureBox(PictureBox unPictureBox, int indx, bool esPieza=true)
             {
-                unPictureBox.Location = CalcularPosiciónTablero(unJuego.getPieza(indx).Posición);
-                unPictureBox.BackColor = GetBackColor(unJuego.getPieza(indx).Posición);
+                if(esPieza)
+                {
+                    unPictureBox.Location = CalcularPosiciónTablero(unJuego.getPieza(indx).Posición);
+                    unPictureBox.BackColor = GetBackColor(unJuego.getPieza(indx).Posición);
+                }
+                else
+                {
+                unPictureBox.Location = CalcularPosiciónTablero(unJuego.GetPosicionCalabozo(indx));
+                }
             }
         #endregion
         #region GetBackColor
@@ -166,10 +179,10 @@ namespace Tp1___Lab2___2023
             }
         #endregion
         #region CambioNombre
-        private void CambioNombre(object sender, EventArgs e)
-        {
-            generarJugadores();
-        }
+            private void CambioNombre(object sender, EventArgs e)
+            {
+                generarJugadores();
+            }
         #endregion
         #region GenerarJugadores 
         /// <summary>
@@ -209,9 +222,9 @@ namespace Tp1___Lab2___2023
             {
                 int cantidadJugadores = Convert.ToInt32(nuCantidadJugadores.Value);
                 int i;
-                for (i = 0; i < pictureBoxes.Length; i++)
+                for (i = 0; i < picturePiezas.Length; i++)
                 {
-                    pictureBoxes[i].Visible = false;
+                    picturePiezas[i].Visible = false;
                 }
                 if(cantidadJugadores==2)
                 {
@@ -219,45 +232,45 @@ namespace Tp1___Lab2___2023
                     {
                         if (rbJugar.Checked)
                         {
-                            pictureBoxes[2].Visible = true;
+                            picturePiezas[2].Visible = true;
                         }
                         else
                         {
-                            pictureBoxes[12].Visible = true;
+                            picturePiezas[12].Visible = true;
                         }
-                        pictureBoxes[5].Visible = true;
+                        picturePiezas[5].Visible = true;
                     }
                 }
                 cantidadJugadores--;
                 if (rbJugar.Checked)
                 {
-                    pictureBoxes[0].Visible = true;
+                    picturePiezas[0].Visible = true;
                     if (unJuego.Dificultad != "Facil")
                     {
-                        pictureBoxes[1].Visible = true;
+                        picturePiezas[1].Visible = true;
                     }
                 }
                 else
                 {
-                    pictureBoxes[10].Visible = true;
+                    picturePiezas[10].Visible = true;
                     if (unJuego.Dificultad != "Facil")
                     {
-                        pictureBoxes[11].Visible = true;
+                        picturePiezas[11].Visible = true;
                     }
                 }
-                pictureBoxes[3].Visible = true;
+                picturePiezas[3].Visible = true;
                 if (unJuego.Dificultad != "Facil")
                 {
-                    pictureBoxes[4].Visible = true;
+                    picturePiezas[4].Visible = true;
                 }
                 cantidadJugadores--;
                 for (i=0; i<cantidadJugadores; i++)
                 {
                     if (unJuego.Dificultad != "Facil")
                     {
-                        pictureBoxes[7 + 2*i].Visible = true;
+                        picturePiezas[7 + 2*i].Visible = true;
                     }
-                    pictureBoxes[6 + 2 * i].Visible = true;
+                    picturePiezas[6 + 2 * i].Visible = true;
                 }
             }
         #endregion
@@ -276,13 +289,22 @@ namespace Tp1___Lab2___2023
                 gbJugador.Enabled = false;
                 gbTipoJuego.Enabled = false;
                 gbVirtuales.Enabled = false;
+                if (unJuego.Dificultad == "Experto")
+                {
+                    foreach (PictureBox unPictureBox in pictureCalabozos)
+                    {
+                        ConfigPictureBox(unPictureBox, cont, false);
+                        cont++;
+                    }
+                }
             }
+            cont = 0;
             logPartida = unJuego.IniciarPartida(out ganador);
             foreach(string unRenglon in logPartida)
             {
                 lBoxLog.Items.Add(unRenglon);
             }
-            foreach (PictureBox unPictureBox in pictureBoxes)
+            foreach (PictureBox unPictureBox in picturePiezas)
             {
                 if (unPictureBox.Visible)
                 {
@@ -290,8 +312,8 @@ namespace Tp1___Lab2___2023
                     cont++;
                 }
             }
-            Jugador unJugador = unJuego.GetJugador(0);
             lbMarcador.Items.Clear();
+            Jugador unJugador = unJuego.GetJugador(0);
             if (rbJugar.Checked)
             {
                 lbMarcador.Items.Add("Humano: " + unJugador.Nombre + ". " + unJugador.Ganadas + " Puntos.");

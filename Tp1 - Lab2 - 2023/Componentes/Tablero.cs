@@ -22,7 +22,7 @@ namespace Componentes
         public void AgregarCalabozo(Random rnd)
         {
             CantidadCalabozos++;
-            int pos = rnd.Next(50);
+            int pos = rnd.Next(1,49);
             Calabozo unCalabozo = new Calabozo("Dungeon " + CantidadCalabozos, pos);
             calabozos.Add(unCalabozo);
         }

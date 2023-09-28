@@ -5,7 +5,6 @@ namespace Componentes
 {
     public class Juego
     {
-        private bool partidaValida;
         public string Dificultad
         {
             get
@@ -42,14 +41,6 @@ namespace Componentes
         {
             Jugador unJugador = new Jugador(nombre);
             jugadores.Add(unJugador);
-            if (jugadores.Count == CantidadJugadores)
-            {
-                partidaValida = true;
-            }
-            else
-            {
-                partidaValida = false;
-            }
         }
         public void GenerarPiezas()
         {
@@ -125,62 +116,59 @@ namespace Componentes
         private string JugarRonda(ArrayList txt, Random rnd)
         {
             string ganador = "";
-            if (partidaValida)
+            string line;
+            foreach (Pieza unaPieza in piezas)
             {
-                string line;
-                foreach (Pieza unaPieza in piezas)
+                if (!AlguienGano(out ganador))
                 {
-                    if (!AlguienGano(out ganador))
+                    if (unaPieza is Caballero)
                     {
-                        if (unaPieza is Caballero)
+                        line = string.Format("{0,-20} se movio a la pos | {1,3}", "Caballero de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next(1, 6)));
+                        txt.Add(line);
+                    }
+                    if (Dificultad != "Facil")
+                    {
+                        if (unaPieza is Dragon)
                         {
-                            line = string.Format("{0,-20} se movio a la pos | {1,3}", "Caballero de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next(1, 6)));
+                            line = string.Format("{0,-20} se movio a la pos | {1,3}", "Dragon de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next()));
                             txt.Add(line);
                         }
-                        if (Dificultad != "Facil")
+                        if (HayDragon(unaPieza) > 0)
                         {
-                            if (unaPieza is Dragon)
+                            // Avanzar
+                            line = string.Format("{0,-10} se encontro un dragon aliado, avanza {1} casillas", unaPieza.Alineación, 5);
+                            line += " (Pos: " + unaPieza.Mover(5) + " )";
+                            txt.Add(line);
+                        }
+                        else if (HayDragon(unaPieza) < 0)
+                        {
+                            //Retroceder
+                            line = string.Format("{0,-10} se encontro un dragon enemigo, retrocede {1} casillas", unaPieza.Alineación, 5);
+                            line += " (Pos: " + unaPieza.Mover(-5) + " )";
+                            txt.Add(line);
+                        }
+                        if (Dificultad == "Experto")
+                        {
+                            if (HayCalabozo(unaPieza))
                             {
-                                line = string.Format("{0,-20} se movio a la pos | {1,3}", "Dragon de " + unaPieza.Alineación, unaPieza.Mover(rnd.Next()));
-                                txt.Add(line);
-                            }
-                            if (HayDragon(unaPieza) > 0)
-                            {
-                                // Avanzar
-                                line = string.Format("{0,-10} se encontro un dragon aliado, avanza {1} casillas", unaPieza.Alineación, 5);
-                                line += " (Pos: " + unaPieza.Mover(5) + " )";
-                                txt.Add(line);
-                            }
-                            else if (HayDragon(unaPieza) < 0)
-                            {
-                                //Retroceder
-                                line = string.Format("{0,-10} se encontro un dragon enemigo, retrocede {1} casillas", unaPieza.Alineación, 5);
-                                line += " (Pos: " + unaPieza.Mover(-5) + " )";
-                                txt.Add(line);
-                            }
-                            if (Dificultad == "Experto")
-                            {
-                                if (HayCalabozo(unaPieza))
+                                //Hacer que pierda, que pierda turno, o nada
+                                if (HayDragon(unaPieza) == 0)
                                 {
-                                    //Hacer que pierda, que pierda turno, o nada
-                                    if (HayDragon(unaPieza) == 0)
-                                    {
-                                        line = string.Format("{0,-20} entro a un calabozo, pierde un turno", "Caballero de " + unaPieza.Alineación);
-                                        //((Caballero)unaPieza).PerderTurno();
-                                        PerderTurno(unaPieza);
-                                        txt.Add(line);
-                                    }
-                                    else if (HayDragon(unaPieza) > 0)
-                                    {
-                                        line = string.Format("{0,-20} entro a un calabozo, pero su dragon estaba para rescatarlo", "Caballero de " + unaPieza.Alineación);
-                                        txt.Add(line);
-                                    }
-                                    else if (HayDragon(unaPieza) < 0)
-                                    {
-                                        line = string.Format("{0,-20} entro a un calabozo con un dragon enemigo, pierde el juego", "Caballero de " + unaPieza.Alineación);
-                                        EliminarJugador(unaPieza);
-                                        txt.Add(line);
-                                    }
+                                    line = string.Format("{0,-20} entro a un calabozo, pierde un turno", "Caballero de " + unaPieza.Alineación);
+                                    //((Caballero)unaPieza).PerderTurno();
+                                    PerderTurno(unaPieza);
+                                    txt.Add(line);
+                                }
+                                else if (HayDragon(unaPieza) > 0)
+                                {
+                                    line = string.Format("{0,-20} entro a un calabozo, pero su dragon estaba para rescatarlo", "Caballero de " + unaPieza.Alineación);
+                                    txt.Add(line);
+                                }
+                                else if (HayDragon(unaPieza) < 0)
+                                {
+                                    line = string.Format("{0,-20} entro a un calabozo con un dragon enemigo, pierde el juego", "Caballero de " + unaPieza.Alineación);
+                                    EliminarJugador(unaPieza);
+                                    txt.Add(line);
                                 }
                             }
                         }
@@ -273,6 +261,10 @@ namespace Componentes
         {
             ((Caballero)unaPieza).PerderTurno();
             unaPieza.Mover(0);
+        }
+        public int GetPosicionCalabozo(int indx)
+        {
+            return tablero.getCalabozo(indx).Posición;
         }
     }
 }
