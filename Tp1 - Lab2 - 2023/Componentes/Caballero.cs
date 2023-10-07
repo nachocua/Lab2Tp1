@@ -9,7 +9,7 @@
         }
         public override int Mover(int n)
         {
-            if(congelado) 
+            if (congelado)
             {
                 congelado = false;
             }
