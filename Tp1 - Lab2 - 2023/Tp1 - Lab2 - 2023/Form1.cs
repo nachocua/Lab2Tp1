@@ -312,6 +312,10 @@ namespace Tp1___Lab2___2023
             int Partidas = 1;
             int i,
                 j;
+            int cont;
+            string ganador;
+            ArrayList logPartida;
+            lBoxLog.Items.Clear();
             if (rbDemo.Checked)
             {
                 Partidas = 3;
@@ -334,9 +338,9 @@ namespace Tp1___Lab2___2023
                     }
                     HabilitarPictureBox();
                 }
-                int cont = 0;
-                ArrayList logPartida = new ArrayList();
-                string ganador;
+                cont = 0;
+                logPartida = new ArrayList();
+                //string ganador;
                 InteractuarInterfaz(false);
                 unJuego.Reset();
                 unJuego.GenerarPiezas();
