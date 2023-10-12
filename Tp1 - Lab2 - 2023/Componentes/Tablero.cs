@@ -19,7 +19,7 @@ namespace Componentes
             CantidadCalabozos = 0;
             calabozos.Clear();
         }
-        public bool AgregarCalabozo(Random rnd)
+        public void AgregarCalabozo(Random rnd)
         {
             bool noSePudo = false;
             int pos;
@@ -37,7 +37,6 @@ namespace Componentes
             CantidadCalabozos++;
             Calabozo unCalabozo = new Calabozo("Dungeon " + CantidadCalabozos, pos);
             calabozos.Add(unCalabozo);
-            return false;
         }
         public Calabozo getCalabozo(int idx)
         {

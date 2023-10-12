@@ -77,7 +77,6 @@ namespace Componentes
         {
             jugadores.Clear();
         }
-        //Completar
         public ArrayList IniciarPartida(out string ganador)
         {
             NroJuego++;
@@ -112,7 +111,6 @@ namespace Componentes
             }
             return txt;
         }
-        //Completar
         public string JugarRonda(ArrayList txt, Random rnd)
         {
             string ganador = "";
@@ -273,17 +271,6 @@ namespace Componentes
                 }
             }
         }
-        /*
-        public void EliminarJugador(Pieza unaPieza)
-        {
-            foreach (Jugador unJugador in jugadores)
-            {
-                if (unJugador.Nombre == unaPieza.Alineación)
-                {
-                    jugadores.Remove(unJugador);
-                }
-            }
-        }*/
         public void PerderTurno(Pieza unaPieza)
         {
             ((Caballero)unaPieza).PerderTurno();
